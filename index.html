@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArabSecurity | بوابة التميز السيبراني العربية 2027</title>
+    <!-- Favicon & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Main Style -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- خلفية كالي لينكس المتدرجة والمدمجة مع اللونين الأسود والبنفسجي -->
+    <div class="site-dynamic-bg"></div>
+
+    <!-- الشريط العلوي (Navbar) -->
+    <header class="navbar">
+        <div class="nav-container">
+            <!-- الشعار -->
+            <a href="index.html" class="brand-logo">
+                <div class="brand-icon">
+                    <i class="fas fa-shield-virus"></i>
+                </div>
+                <span class="brand-name">ArabSecurity</span>
+            </a>
+
+            <!-- روابط التنقل الأساسية -->
+            <ul class="nav-links">
+                <li class="nav-item"><a href="index.html" class="active"><i class="fas fa-house"></i> الرئيسية</a></li>
+                <li class="nav-item"><a href="teams.html"><i class="fas fa-route"></i> المسارات</a></li>
+                <li class="nav-item"><a href="tools.html"><i class="fas fa-toolbox"></i> الأدوات</a></li>
+                <li class="nav-item"><a href="about.html"><i class="fas fa-circle-info"></i> حول</a></li>
+                <li class="nav-item"><a href="support.html"><i class="fas fa-headset"></i> الدعم</a></li>
+            </ul>
+
+            <!-- البحث السريع للوصول إلى /admin -->
+            <div class="nav-actions">
+                <button class="search-trigger-btn" aria-label="بحث في المنصة">
+                    <i class="fas fa-search"></i>
+                    <span>بحث / أوامر</span>
+                    <span class="search-kbd">Ctrl K</span>
+                </button>
+                <button class="mobile-menu-btn" aria-label="القائمة">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- نافذة البحث السريع والأوامر (Search Modal) -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-box">
+            <div class="search-input-wrapper">
+                <i class="fas fa-search" style="color:var(--neon-purple); font-size:1.1rem;"></i>
+                <input type="text" id="siteSearchInput" placeholder="اكتب للبحث أو اكتب /admin للوحة التحكم..." autocomplete="off">
+                <button id="closeSearchModal" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:1.1rem;">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <ul class="search-results-list" id="searchResults">
+                <!-- النتائج تظهر هنا ديناميكياً -->
+            </ul>
+            <div class="search-hint">
+                <span>تلميح: اكتب <code>/admin</code> للدخول المباشر إلى لوحة الإدارة</span>
+                <span>ESC للإغلاق</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- المحتوى الرئيسي للصفحة -->
+    <main class="main-wrapper">
+        <!-- القسم الرئيسي (Hero Section) -->
+        <section class="hero-section">
+            <div class="hero-badge">
+                <i class="fas fa-terminal"></i>
+                <span>المرجع العربي المتكامل للأمن السيبراني واختبار الاختراق</span>
+            </div>
+
+            <!-- العنوان الرئيسي: بوابة التميز السيبراني العربية 2027 -->
+            <!-- ملاحظة: النص أدناه موجود في ملف index.html السطر 82، ويمكن تغييره أيضاً من لوحة تحكم الأدمن -->
+            <h1 class="hero-title">
+                <span class="brand-name">arabsecurity</span>
+                <br>
+                <span class="glow-text dynamic-year-text">بوابة التميز السيبراني العربية 2027</span>
+            </h1>
+
+            <p class="hero-subtitle">
+                خارطة طريق تعليمية موحدة وشاملة للمهتمين بعالم الهكر الأخلاقي (Red Team)، الدفاع السيبراني وتحليل الحوادث (Blue Team)، وأساسيات البرمجة والشبكات بأقوى الشروحات العربية ومكتبة أدوات احترافية متكاملة.
+            </p>
+
+            <div class="hero-cta-group">
+                <a href="teams.html" class="btn btn-primary" style="font-size:1.1rem; padding:15px 36px;">
+                    <i class="fas fa-rocket"></i> ابدأ التعلم الآن
+                </a>
+                <a href="tools.html" class="btn btn-outline" style="font-size:1.1rem; padding:15px 32px;">
+                    <i class="fas fa-wrench"></i> استكشف أدوات الأمن السيبراني
+                </a>
+            </div>
+        </section>
+
+        <!-- بطاقات المزايا والقيمة المضافة لمنصة ArabSecurity -->
+        <section class="features-grid">
+            <div class="feature-box">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-halved"></i>
+                </div>
+                <h3 class="feature-title">مسارات تعليمية منظمة</h3>
+                <p class="feature-desc">
+                    مسارات تبدأ معك خطوة بخطوة من الصفر في البرمجة والشبكات والأنظمة حتى الوصول لأعلى المستويات الاحترافية في مجالات الهجوم والدفاع.
+                </p>
+            </div>
+
+            <div class="feature-box">
+                <div class="feature-icon">
+                    <i class="fas fa-microchip"></i>
+                </div>
+                <h3 class="feature-title">أقوى الكورسات المعتمدة</h3>
+                <p class="feature-desc">
+                    اختيار دقيق لأفضل الدورات العربية المجانية والمعتمدة لنخبة من كبار المهندسين والخبراء المعتمدين عالمياً مع شرح كافة التفاصيل.
+                </p>
+            </div>
+
+            <div class="feature-box">
+                <div class="feature-icon">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h3 class="feature-title">مكتبة الأدوات السيبرانية</h3>
+                <p class="feature-desc">
+                    دليل شامل لأشهر وأقوى أدوات اختبار الاختراق والـ OSINT وفحص الثغرات مع روابط مواقعها الرسمية ودليل استخدام كل أداة.
+                </p>
+            </div>
+
+            <div class="feature-box">
+                <div class="feature-icon">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <h3 class="feature-title">مجتمع عربي متنامي</h3>
+                <p class="feature-desc">
+                    بيئة تعليمية عربية تركز على التطبيق العملي، محاكاة بيئات اللابات الحقيقية، والتحضير للشهادات العالمية المرموقة.
+                </p>
+            </div>
+        </section>
+
+        <!-- بطاقة تعريفية بمصمم ومطور الموقع Mostafa Ahmed -->
+        <section class="designer-showcase">
+            <div class="designer-avatar">
+                <i class="fas fa-user-gear"></i>
+            </div>
+            <div class="designer-info">
+                <h3>تصميم وتطوير المنصة</h3>
+                <div class="designer-role">المصمم والمطور الرئيسي: <span class="dynamic-designer-name">Mostafa Ahmed</span></div>
+                <p class="designer-bio">
+                    تم بناء وتصميم منصة ArabSecurity لتقديم تجربة بصرية فائقة السلاسة بهوية برمجية مستوحاة من Kali Linux مع دمج احترافي بين درجات الأسود العميقة وألوان النيون البنفسجية المتدفقة لتوفير بيئة تعليمية ممتعة ومريحة لخبراء وباحثي الأمن السيبراني.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- الفوتر (Footer) -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-copy">
+                جميع الحقوق محفوظة &copy; <span id="footerCurrentYear">2027</span> منصة <strong>ArabSecurity</strong>
+            </div>
+            <div class="footer-designer">
+                تصميم وتطوير: <span class="dynamic-designer-name">Mostafa Ahmed</span>
+            </div>
+            <ul class="footer-links">
+                <li><a href="teams.html">المسارات</a></li>
+                <li><a href="tools.html">الأدوات</a></li>
+                <li><a href="about.html">حول المنصة</a></li>
+                <li><a href="support.html">الدعم الفني</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- ملفات البيانات والتشغيل -->
+    <script src="js/admin-config.js"></script>
+    <script src="js/default-data.js"></script>
+    <script src="js/site-data.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

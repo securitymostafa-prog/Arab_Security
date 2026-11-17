@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مكتبة أدوات الأمن السيبراني | ArabSecurity</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="site-dynamic-bg"></div>
+
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo">
+                <div class="brand-icon"><i class="fas fa-shield-virus"></i></div>
+                <span class="brand-name">ArabSecurity</span>
+            </a>
+
+            <ul class="nav-links">
+                <li class="nav-item"><a href="index.html"><i class="fas fa-house"></i> الرئيسية</a></li>
+                <li class="nav-item"><a href="teams.html"><i class="fas fa-route"></i> المسارات</a></li>
+                <li class="nav-item"><a href="tools.html" class="active"><i class="fas fa-toolbox"></i> الأدوات</a></li>
+                <li class="nav-item"><a href="about.html"><i class="fas fa-circle-info"></i> حول</a></li>
+                <li class="nav-item"><a href="support.html"><i class="fas fa-headset"></i> الدعم</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="search-trigger-btn" aria-label="بحث في المنصة">
+                    <i class="fas fa-search"></i>
+                    <span>بحث / أوامر</span>
+                    <span class="search-kbd">Ctrl K</span>
+                </button>
+                <button class="mobile-menu-btn" aria-label="القائمة"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <div class="search-modal" id="searchModal">
+        <div class="search-box">
+            <div class="search-input-wrapper">
+                <i class="fas fa-search" style="color:var(--neon-purple); font-size:1.1rem;"></i>
+                <input type="text" id="siteSearchInput" placeholder="اكتب للبحث أو اكتب /admin للوحة التحكم..." autocomplete="off">
+                <button id="closeSearchModal" style="background:none; border:none; color:var(--text-muted); cursor:pointer;"><i class="fas fa-times"></i></button>
+            </div>
+            <ul class="search-results-list" id="searchResults"></ul>
+            <div class="search-hint">
+                <span>اكتب <code>/admin</code> للوصول المباشر للوحة التحكم</span>
+                <span>ESC للإغلاق</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="main-wrapper">
+        <div class="page-header">
+            <div class="hero-badge">
+                <i class="fas fa-terminal"></i>
+                <span>ترسانة مختبر ومحلل الأمن السيبراني</span>
+            </div>
+            <h1 class="page-title">مكتبة أدوات الأمن السيبراني</h1>
+            <p class="page-subtitle">
+                دليل تفاعلي لأقوى أدوات اختبار الاختراق والتحليل الأمني مقسمة حسب تخصصات الويب، الشبكات، الـ OSINT، الشبكات اللاسلكية، وكسر كلمات المرور مع روابط المواقع الرسمية.
+            </p>
+        </div>
+
+        <!-- شريط الفلترة حسب الفئة -->
+        <div class="tools-filter-bar">
+            <button class="filter-btn active" data-filter="all"><i class="fas fa-border-all"></i> جميع الأدوات</button>
+            <button class="filter-btn" data-filter="web"><i class="fas fa-globe"></i> اختبار اختراق الويب</button>
+            <button class="filter-btn" data-filter="network"><i class="fas fa-network-wired"></i> اختبار اختراق الشبكات</button>
+            <button class="filter-btn" data-filter="osint"><i class="fas fa-user-secret"></i> أدوات الـ OSINT</button>
+            <button class="filter-btn" data-filter="wireless"><i class="fas fa-wifi"></i> اختبار اختراق WiFi واللاسلكي</button>
+            <button class="filter-btn" data-filter="passwords"><i class="fas fa-key"></i> كسر وتخمين كلمات المرور</button>
+        </div>
+
+        <!-- شبكة الأدوات الديناميكية والمدمجة برمجياً -->
+        <div class="tools-grid" id="toolsContainer">
+            <!-- 1. اختبار اختراق الويب -->
+            <div class="tool-card" data-category="web">
+                <div>
+                    <div class="tool-top">
+                        <h3 class="tool-name">Burp Suite</h3>
+                        <span class="tool-category-badge">اختبار اختراق الويب</span>
+                    </div>
+                    <p class="tool-desc">المنصة الرائدة عالمياً لاختبار أمان تطبيقات الويب، تعمل كـ Proxy لاعتراض حزم HTTP/S وفحص ثغرات الويب المتقدمة وتحليل الطلبات البرمجية.</p>
+                </div>
+                <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:16px; display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-size:0.8rem; color:var(--text-muted);">Web Proxy & Scanner</span>
+                    <a href="https://portswigger.net/burp" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:8px 16px; font-size:0.88rem;">
+                        <i class="fas fa-external-link-alt"></i> الموقع الرسمي
+                    </a>
+                </div>
+            </div>
+
+            <div class="tool-card" data-category="web">
+                <div>
+                    <div class="tool-top">
+                        <h3 class="tool-name">SQLmap</h3>
+                        <span class="tool-category-badge">اختبار اختراق الويب</span>
+                    </div>
+                    <p class="tool-desc">أداة آلية مفتوحة المصدر فائقة القوة لاكتشاف واستغلال ثغرات حقن قواعد البيانات (SQL Injection) وسحب قواعد البيانات والتحكم في الخوادم.</p>
+                </div>
+                <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:16px; display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-size:0.8rem; color:var(--text-muted);">Database Exploitation</span>
+                    <a href="https://sqlmap.org/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:8px 16px; font-size:0.88rem;">
+                        <i class="fas fa-external-link-alt"></i> الموقع الرسمي
+                    </a>
+                </div>
+            </div>
+
+            <div class="tool-card" data-category="web">
+                <div>
+                    <div class="tool-top">
+                        <h3 class="tool-name">Nikto</h3>
+                        <span class="tool-category-badge">اختبار اختراق الويب</span>
+                    </div>
+                    <p class="tool-desc">ماسح أمني شامل لخوادم الويب يفحص أكثر من 6700 ملف خطير ومحتمل، والبرمجيات غير المحدثة، وتكوينات الخوادم الخاطئة ومشاكل الأمان.</p>
+                </div>
+                <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:16px; display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-size:0.8rem; color:var(--text-muted);">Server Vulnerability Scanner</span>
+                    <a href="https://cirt.net/Nikto2" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:8px 16px; font-size:0.88rem;">
+                        <i class="fas fa-external-link-alt"></i> الموقع الرسمي
+                    </a>
+                </div>
+            </div>
+
+            <div class="tool-card" data-category="web">
+                <div>
+                    <div class="tool-top">
+                        <h3 class="tool-name">OWASP ZAP</h3>
+                        <span class="tool-category-badge">اختبار اختراق الويب</span>
+                    </div>
+                    <p class="tool-desc">أداة مجانية مفتوحة المصدر تابعة لمنظمة OWASP مصممة لمساعدة المطورين ومختبري الاختراق في العثور التلقائي على الثغرات الأمنية في تطبيقات الويب أثناء التطوير والاختبار.</p>
+                </div>
+                <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:16px; display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-size:0.8rem; color:var(--text-muted);">Open Source DAST</span>
+                    <a href="https://www.zaproxy.org/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:8px 16px; font-size:0.88rem;">
+                        <i class="fas fa-external-link-alt"></i> الموقع الرسمي
+                    </a>
+                </div>
+            </div>
+
+            <!-- 2. اختبار اختراق الشبكات -->
+            <div class="tool-card" data-category="network">
+                <div>
+                    <div class="tool-top">
+                        <h3 class="tool-name">Nmap</h3>
+                        <span class="tool-category-badge">اختبار اختراق الشبكات</span>
+                    </div>
+                    <p class="tool-desc">المعيار العالمي لاستكشاف الشبكات وفحص المنافذ واكتشاف الخدمات وأنظمة التشغيل، وتحديد المنافذ المفتوحة والثغرات عبر سكربتات NSE القوية.</p>
+                </div>
+                <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:16px; display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-size:0.8rem; color:var(--text-muted);">Network Scanner & Discovery</span>
+                    <a href="https://nmap.org/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:8px 16px; font-size:0.88rem;">
+                        <i class="fas fa-external-link-alt"></i> الموقع الرسمي
+                    </a>
+                </div>
+            </div>
+
+            <div class="tool-card" data-category="network">
+                <div>
+                    <div class="tool-top">
+                        <h3 class="tool-name">Masscan</h3>
+                        <span class="tool-category-badge">اختبار اختراق الشبكات</span>
+                    </div>
+                    <p class="tool-desc">أسرع ماسح لمنافذ الشبكة والإنترنت في العالم، قادر على مسح كامل فضاء عناوين IPv4 خلال أقل من 5 دقائق باستخدام بنية نقل حزم غير متزامنة.</p>
+                </div>
+                <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:16px; display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-size:0.8rem; color:var(--text-muted);">Ultra-Fast Scanner</span>
+                    <a href="https://github.com/robertdavidgraham/masscan" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:8px 16px; font-size:0.88rem;">
+                        <i class="fas fa-external-link-alt"></i> الموقع الرسمي
+                    </a>
+                </div>
+            </div>
+
+            <div class="tool-card" data-category="network">
+                <div>
+                    <div class="tool-top">
+                        <h3 class="tool-name">Netcat (nc)</h3>
+                        <span class="tool-category-badge">اختبار اختراق الشبكات</span>
+                    </div>
+                    <p class="tool-desc">تُعرف بـ 'سكين الجيش السويسري' للشبكات، أداة متعددة الاستخدامات لقراءة وكتابة البيانات عبر اتصالات TCP و UDP، وإنشاء Reverse Shells ونقل الملفات واختبار المنافذ.</p>
+                </div>
+                <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:16px; display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-size:0.8rem; color:var(--text-muted);">Swiss Army Knife</span>
+                    <a href="https://nc110.sourceforge.io/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:8px 16px; font-size:0.88rem;">
+                        <i class="fas fa-external-link-alt"></i> الموقع الرسمي
+                    </a>
+                </div>
+            </div>
+
+            <div class="tool-card" data-category="network">
+                <div>
+                    <div class="tool-top">
+                        <h3 class="tool-name">Metasploit Framework</h3>
+                        <span class="tool-category-badge">اختبار اختراق الشبكات</span>
+                    </div>
+                    <p class="tool-desc">إطار العمل الأكثر شهرة عالمياً لتطوير واختبار واستغلال الثغرات الأمنية (Exploits)، يضم آلاف الحمولات الخبيثة (Payloads) ووحدات ما بعد الاستغلال المتقدمة.</p>
+                </div>
+                <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:16px; display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-size:0.8rem; color:var(--text-muted);">Exploitation Framework</span>
+                    <a href="https://www.metasploit.com/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:8px 16px; font-size:0.88rem;">
+                        <i class="fas fa-external-link-alt"></i> الموقع الرسمي
+                    </a>
+                </div>
+            </div>
+
+            <div class="tool-card" data-category="network">
+                <div>
+                    <div class="tool-top">
+                        <h3 class="tool-name">Wireshark</h3>
+                        <span class="tool-category-badge">اختبار اختراق الشبكات</span>
+                    </div>
+                    <p class="tool-desc">أقوى محلل لبروتوكولات وحزم الشبكة (Packet Analyzer) في العالم، يتيح فحص حركة مرور البيانات الحية بدقة متناهية وفك تشفير البروتوكولات وتحليل الحوادث الشبكية.</p>
+                </div>
+                <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:16px; display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-size:0.8rem; color:var(--text-muted);">Packet Analyzer & Sniffer</span>
+                    <a href="https://www.wireshark.org/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:8px 16px; font-size:0.88rem;">
+                        <i class="fas fa-external-link-alt"></i> الموقع الرسمي
+                    </a>
+                </div>
+            </div>
+
+            <!-- 3. أدوات الـ OSINT -->
+            <div class="tool-card" data-category="osint">
+                <div>
+                    <div class="tool-top">
+                        <h3 class="tool-name">Maltego</h3>
+                        <span class="tool-category-badge">جمع المعلومات OSINT</span>
+                    </div>
+                    <p class="tool-desc">أداة رائدة في التحقيق البصري ورسم العلاقات الاستخباراتية، تجمع وتربط بين النطاقات وعناوين الـ IP والحسابات والأشخاص والمؤسسات في مخططات بيانية تفاعلية.</p>
+                </div>
+                <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:16px; display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-size:0.8rem; color:var(--text-muted);">Visual Intelligence</span>
+                    <a href="https://www.maltego.com/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:8px 16px; font-size:0.88rem;">
+                        <i class="fas fa-external-link-alt"></i> الموقع الرسمي
+                    </a>
+                </div>
+            </div>
+
+            <div class="tool-card" data-category="osint">
+                <div>
+                    <div class="tool-top">
+                        <h3 class="tool-name">Sherlock</h3>
+                        <span class="tool-category-badge">جمع المعلومات OSINT</span>
+                    </div>
+                    <p class="tool-desc">أداة مفتوحة المصدر عالية الكفاءة للبحث عن اسم المستخدم والتحقق من وجود الحسابات المستعارة عبر مئات شبكات التواصل الاجتماعي والمنصات الرقمية بلمح البصر.</p>
+                </div>
+                <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:16px; display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-size:0.8rem; color:var(--text-muted);">User Search</span>
+                    <a href="https://sherlock-project.github.io/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:8px 16px; font-size:0.88rem;">
+                        <i class="fas fa-external-link-alt"></i> الموقع الرسمي
+                    </a>
+                </div>
+            </div>
+
+            <div class="tool-card" data-category="osint">
+                <div>
+                    <div class="tool-top">
+                        <h3 class="tool-name">ExifTool</h3>
+                        <span class="tool-category-badge">جمع المعلومات OSINT</span>
+                    </div>
+                    <p class="tool-desc">أداة برمجية احترافية لقراءة وكتابة وتعديل بيانات الميتا داتا (Metadata) المخفية في مختلف أنواع الملفات والصور والمستندات (مثل الموقع الجغرافي ونوع الكاميرا وتاريخ الإنشاء).</p>
+                </div>
+                <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:16px; display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-size:0.8rem; color:var(--text-muted);">Metadata Reader</span>
+                    <a href="https://exiftool.org/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:8px 16px; font-size:0.88rem;">
+                        <i class="fas fa-external-link-alt"></i> الموقع الرسمي
+                    </a>
+                </div>
+            </div>
+
+            <div class="tool-card" data-category="osint">
+                <div>
+                    <div class="tool-top">
+                        <h3 class="tool-name">SpiderFoot</h3>
+                        <span class="tool-category-badge">جمع المعلومات OSINT</span>
+                    </div>
+                    <p class="tool-desc">أداة استخبارات آلية متطورة لأتمتة جمع المعلومات والتحقيق في عناوين IP وأسماء النطاقات وعناوين البريد وأرقام الهواتف من أكثر من 100 مصدر خارجي.</p>
+                </div>
+                <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:16px; display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-size:0.8rem; color:var(--text-muted);">Automated Recon</span>
+                    <a href="https://www.spiderfoot.net/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:8px 16px; font-size:0.88rem;">
+                        <i class="fas fa-external-link-alt"></i> الموقع الرسمي
+                    </a>
+                </div>
+            </div>
+
+            <!-- 4. اختراق الواي فاي واللاسلكي -->
+            <div class="tool-card" data-category="wireless">
+                <div>
+                    <div class="tool-top">
+                        <h3 class="tool-name">Aircrack-ng</h3>
+                        <span class="tool-category-badge">اختراق WiFi واللاسلكي</span>
+                    </div>
+                    <p class="tool-desc">المجموعة القياسية الأشهر عالمياً لتقييم أمان شبكات الواي فاي، تتضمن أدوات لالتقاط الحزم واعتراض البث وشن هجمات Replay وكسر تشفير شبكات WEP و WPA/WPA2-PSK.</p>
+                </div>
+                <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:16px; display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-size:0.8rem; color:var(--text-muted);">WiFi Suite</span>
+                    <a href="https://www.aircrack-ng.org/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:8px 16px; font-size:0.88rem;">
+                        <i class="fas fa-external-link-alt"></i> الموقع الرسمي
+                    </a>
+                </div>
+            </div>
+
+            <div class="tool-card" data-category="wireless">
+                <div>
+                    <div class="tool-top">
+                        <h3 class="tool-name">Wifite</h3>
+                        <span class="tool-category-badge">اختراق WiFi واللاسلكي</span>
+                    </div>
+                    <p class="tool-desc">أداة برمجية آلية مصممة لأتمتة الهجمات على شبكات الواي فاي المشفرة بـ WEP و WPA/WPA2 و WPS بنقرة واحدة ودون الحاجة لتنفيذ أوامر متعددة يدوياً.</p>
+                </div>
+                <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:16px; display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-size:0.8rem; color:var(--text-muted);">Automated Auditor</span>
+                    <a href="https://github.com/derv82/wifite2" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:8px 16px; font-size:0.88rem;">
+                        <i class="fas fa-external-link-alt"></i> الموقع الرسمي
+                    </a>
+                </div>
+            </div>
+
+            <div class="tool-card" data-category="wireless">
+                <div>
+                    <div class="tool-top">
+                        <h3 class="tool-name">Reaver</h3>
+                        <span class="tool-category-badge">اختراق WiFi واللاسلكي</span>
+                    </div>
+                    <p class="tool-desc">أداة متخصصة في شن هجمات التخمين (Brute-Force) ضد بروتوكول الإعداد المحمي للواي فاي (WPS)، لاستعادة مفتاح WPA/WPA2 الحقيقي في ساعات معدودة.</p>
+                </div>
+                <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:16px; display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-size:0.8rem; color:var(--text-muted);">WPS Brute-Force</span>
+                    <a href="https://github.com/t6x/reaver-wps-fork-t6x" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:8px 16px; font-size:0.88rem;">
+                        <i class="fas fa-external-link-alt"></i> الموقع الرسمي
+                    </a>
+                </div>
+            </div>
+
+            <div class="tool-card" data-category="wireless">
+                <div>
+                    <div class="tool-top">
+                        <h3 class="tool-name">Kismet</h3>
+                        <span class="tool-category-badge">اختراق WiFi واللاسلكي</span>
+                    </div>
+                    <p class="tool-desc">كاشف لاسلكي ومحلل لحزم الشبكات اللاسلكية ونظام كشف تسلل (WIDS) يدعم شبكات WiFi و Bluetooth وموجات راديو SDR وتحديد المواقع الجغرافية لنقاط الوصول.</p>
+                </div>
+                <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:16px; display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-size:0.8rem; color:var(--text-muted);">Wireless IDS</span>
+                    <a href="https://www.kismetwireless.net/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:8px 16px; font-size:0.88rem;">
+                        <i class="fas fa-external-link-alt"></i> الموقع الرسمي
+                    </a>
+                </div>
+            </div>
+
+            <!-- 5. كسر وتخمين كلمات المرور -->
+            <div class="tool-card" data-category="passwords">
+                <div>
+                    <div class="tool-top">
+                        <h3 class="tool-name">Hydra</h3>
+                        <span class="tool-category-badge">كسر كلمات المرور</span>
+                    </div>
+                    <p class="tool-desc">أسرع وأقوى أداة لتنفيذ هجمات التخمين المباشرة (Online Password Cracking) تدعم أكثر من 50 بروتوكولاً مختلفاً مثل SSH, FTP, HTTP, Telnet, SMB, MySQL.</p>
+                </div>
+                <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:16px; display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-size:0.8rem; color:var(--text-muted);">Logon Cracker</span>
+                    <a href="https://github.com/vanhauser-thc/thc-hydra" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:8px 16px; font-size:0.88rem;">
+                        <i class="fas fa-external-link-alt"></i> الموقع الرسمي
+                    </a>
+                </div>
+            </div>
+
+            <div class="tool-card" data-category="passwords">
+                <div>
+                    <div class="tool-top">
+                        <h3 class="tool-name">John the Ripper</h3>
+                        <span class="tool-category-badge">كسر كلمات المرور</span>
+                    </div>
+                    <p class="tool-desc">أداة كسر كلمات المرور الأسطورية مفتوحة المصدر، مصممة لاكتشاف كلمات السر الضعيفة وكسر مئات صيغ التشفير والهاشات وأنظمة التحقق المختلفة.</p>
+                </div>
+                <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:16px; display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-size:0.8rem; color:var(--text-muted);">Hash Cracker</span>
+                    <a href="https://www.openwall.com/john/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:8px 16px; font-size:0.88rem;">
+                        <i class="fas fa-external-link-alt"></i> الموقع الرسمي
+                    </a>
+                </div>
+            </div>
+
+            <div class="tool-card" data-category="passwords">
+                <div>
+                    <div class="tool-top">
+                        <h3 class="tool-name">Hashcat</h3>
+                        <span class="tool-category-badge">كسر كلمات المرور</span>
+                    </div>
+                    <p class="tool-desc">أسرع محرك لكسر الهاشات المشفرة في العالم، يستفيد من قوة المعالجة الهائلة لكروت الشاشة (GPU Acceleration) ويكسر مليارات التخمينات في الثانية.</p>
+                </div>
+                <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:16px; display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-size:0.8rem; color:var(--text-muted);">GPU Cracker</span>
+                    <a href="https://hashcat.net/hashcat/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:8px 16px; font-size:0.88rem;">
+                        <i class="fas fa-external-link-alt"></i> الموقع الرسمي
+                    </a>
+                </div>
+            </div>
+
+            <div class="tool-card" data-category="passwords">
+                <div>
+                    <div class="tool-top">
+                        <h3 class="tool-name">Crunch</h3>
+                        <span class="tool-category-badge">كسر كلمات المرور</span>
+                    </div>
+                    <p class="tool-desc">أداة مخصصة لتوليد قواميس وقوائم كلمات المرور (Wordlists) المخصصة بناءً على محددات معينة من الأحرف والأرقام والرموز وتحديد طول كلمة المرور بدقة.</p>
+                </div>
+                <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:16px; display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-size:0.8rem; color:var(--text-muted);">Wordlist Generator</span>
+                    <a href="https://sourceforge.net/projects/crunch-wordlist/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:8px 16px; font-size:0.88rem;">
+                        <i class="fas fa-external-link-alt"></i> الموقع الرسمي
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-copy">
+                جميع الحقوق محفوظة &copy; 2027 منصة <strong>ArabSecurity</strong>
+            </div>
+            <div class="footer-designer">
+                تصميم وتطوير: <span class="dynamic-designer-name">Mostafa Ahmed</span>
+            </div>
+            <ul class="footer-links">
+                <li><a href="teams.html">المسارات</a></li>
+                <li><a href="tools.html">الأدوات</a></li>
+                <li><a href="about.html">حول المنصة</a></li>
+                <li><a href="support.html">الدعم الفني</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="js/admin-config.js"></script>
+    <script src="js/default-data.js"></script>
+    <script src="js/site-data.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

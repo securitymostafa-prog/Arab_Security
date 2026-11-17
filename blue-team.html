@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مسار البلو تيم (Blue Team) | ArabSecurity</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="site-dynamic-bg"></div>
+
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo">
+                <div class="brand-icon"><i class="fas fa-shield-virus"></i></div>
+                <span class="brand-name">ArabSecurity</span>
+            </a>
+
+            <ul class="nav-links">
+                <li class="nav-item"><a href="index.html"><i class="fas fa-house"></i> الرئيسية</a></li>
+                <li class="nav-item"><a href="teams.html" class="active"><i class="fas fa-route"></i> المسارات</a></li>
+                <li class="nav-item"><a href="tools.html"><i class="fas fa-toolbox"></i> الأدوات</a></li>
+                <li class="nav-item"><a href="about.html"><i class="fas fa-circle-info"></i> حول</a></li>
+                <li class="nav-item"><a href="support.html"><i class="fas fa-headset"></i> الدعم</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="search-trigger-btn" aria-label="بحث في المنصة">
+                    <i class="fas fa-search"></i>
+                    <span>بحث / أوامر</span>
+                    <span class="search-kbd">Ctrl K</span>
+                </button>
+                <button class="mobile-menu-btn" aria-label="القائمة"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <div class="search-modal" id="searchModal">
+        <div class="search-box">
+            <div class="search-input-wrapper">
+                <i class="fas fa-search" style="color:var(--neon-purple); font-size:1.1rem;"></i>
+                <input type="text" id="siteSearchInput" placeholder="اكتب للبحث أو اكتب /admin للوحة التحكم..." autocomplete="off">
+                <button id="closeSearchModal" style="background:none; border:none; color:var(--text-muted); cursor:pointer;"><i class="fas fa-times"></i></button>
+            </div>
+            <ul class="search-results-list" id="searchResults"></ul>
+            <div class="search-hint">
+                <span>اكتب <code>/admin</code> للوصول المباشر للوحة التحكم</span>
+                <span>ESC للإغلاق</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="main-wrapper">
+        <div class="page-header">
+            <div class="hero-badge" style="border-color:rgba(59,130,246,0.4); color:#93c5fd; background:rgba(59,130,246,0.1);">
+                <i class="fas fa-shield-halved"></i>
+                <span>مسار الدفاع السيبراني وتحليل الحوادث</span>
+            </div>
+            <h1 class="page-title">مسار البلو تيم (Blue Team)</h1>
+            <p class="page-subtitle">
+                تعلم كيفية حماية المنظمات والأنظمة ومراقبة غرف العمليات (SOC Tier 1 & 2) والتحقيق الجنائي الرقمي (DFIR) وصيد التهديدات الخفية (Threat Hunting).
+            </p>
+        </div>
+
+        <!-- حاوية الكورسات الديناميكية والمدمجة برمجياً -->
+        <div id="blueTeamCoursesContainer">
+            <!-- المستوى المبتدئ -->
+            <div class="courses-level-section">
+                <div class="section-level-badge">
+                    <i class="fas fa-shield-halved"></i> المستوى الأول: المبتدئ (Blue Team Fundamentals & SOC)
+                </div>
+                <div class="course-card" data-course-id="blue-01">
+                    <div class="course-header">
+                        <div class="course-title-wrap">
+                            <span class="course-abbrev-badge">SOC Analyst L1</span>
+                            <h3 class="course-title">أساسيات الفريق الأزرق ومحلل مركز العمليات الأمنية (Blue Team Fundamentals & SOC Analyst)</h3>
+                        </div>
+                        <span class="badge" style="background:rgba(59,130,246,0.15); color:#93c5fd; padding:6px 14px; border-radius:20px; font-size:0.82rem; border:1px solid rgba(59,130,246,0.3);">
+                            SOC Tier 1
+                        </span>
+                    </div>
+                    <div class="course-details-grid">
+                        <div class="course-detail-item">
+                            <i class="fas fa-chalkboard-user"></i>
+                            <div>
+                                <div class="detail-label">المدرب / المهندس:</div>
+                                <div class="detail-value">المهندس عبد العظيم محمد (Abdalazim Mohamed / @Tanahso)</div>
+                            </div>
+                        </div>
+                        <div class="course-detail-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <div class="detail-label">مدة ومستوى الكورس:</div>
+                                <div class="detail-value">مسار تأسيسي شامل مع شرح تطبيقي</div>
+                            </div>
+                        </div>
+                        <div class="course-detail-item">
+                            <i class="fas fa-bookmark"></i>
+                            <div>
+                                <div class="detail-label">الاسم المختصر:</div>
+                                <div class="detail-value">SOC Analyst L1</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="course-desc">كورس تأسيسي يدخلك عالم الدفاع السيبراني من الباب الأوسع، يشرح دور محلل الـ SOC، كيفية قراءة ومراقبة سجلات الأنظمة (Log Analysis)، رصد وتتبع الهجمات السيبرانية والتصدي لها.</p>
+                    <div class="course-actions">
+                        <div class="course-tags">
+                            <span class="course-tag">Blue Team</span>
+                            <span class="course-tag">SOC</span>
+                            <span class="course-tag">مبتدئ</span>
+                            <span class="course-tag">Log Analysis</span>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=-OUfp-QsZ4c&list=PL45hqlgY25vxRneFoD_9OWmI-x8tAnz42&pp=0gcJCW8DOCosWNin" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                            <i class="fas fa-play-circle"></i> بدء دراسة الكورس الآن
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- المستوى المتوسط -->
+            <div class="courses-level-section">
+                <div class="section-level-badge">
+                    <i class="fas fa-shield-halved"></i> المستوى الثاني: المتوسط (Digital Forensics & Incident Response)
+                </div>
+                <div class="course-card" data-course-id="blue-02">
+                    <div class="course-header">
+                        <div class="course-title-wrap">
+                            <span class="course-abbrev-badge">DFIR / CyberDefenders</span>
+                            <h3 class="course-title">التحقيق الجنائي الرقمي وحل تحديات سايبر ديفندرز (Digital Forensics & CyberDefenders)</h3>
+                        </div>
+                        <span class="badge" style="background:rgba(59,130,246,0.15); color:#93c5fd; padding:6px 14px; border-radius:20px; font-size:0.82rem; border:1px solid rgba(59,130,246,0.3);">
+                            DFIR Specialist
+                        </span>
+                    </div>
+                    <div class="course-details-grid">
+                        <div class="course-detail-item">
+                            <i class="fas fa-chalkboard-user"></i>
+                            <div>
+                                <div class="detail-label">المدرب / المهندس:</div>
+                                <div class="detail-value">قناة Techno Hub (تكنو هب)</div>
+                            </div>
+                        </div>
+                        <div class="course-detail-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <div class="detail-label">مدة ومستوى الكورس:</div>
+                                <div class="detail-value">تحديات ولابات عملية وتطبيقات واقعية</div>
+                            </div>
+                        </div>
+                        <div class="course-detail-item">
+                            <i class="fas fa-bookmark"></i>
+                            <div>
+                                <div class="detail-label">الاسم المختصر:</div>
+                                <div class="detail-value">DFIR / CyberDefenders</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="course-desc">شروحات عملية وحلول لتحديات منصة CyberDefenders العالمية، تشمل التحقيق الجنائي الرقمي (DFIR)، تحليل إخفاء البيانات (Steganography)، تتبع مسار الاختراق واستخراج الأدلة الرقمية.</p>
+                    <div class="course-actions">
+                        <div class="course-tags">
+                            <span class="course-tag">DFIR</span>
+                            <span class="course-tag">Forensics</span>
+                            <span class="course-tag">متوسط</span>
+                            <span class="course-tag">CyberDefenders</span>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=CpplfTqcd5I&list=PLzA_9WOhI7Ve3ZMmtXq3gyGSmiuoxQGQj&pp=0gcJCW8DOCosWNin" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                            <i class="fas fa-play-circle"></i> بدء دراسة الكورس الآن
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- المستوى المتقدم -->
+            <div class="courses-level-section">
+                <div class="section-level-badge">
+                    <i class="fas fa-shield-halved"></i> المستوى الثالث: المتقدم (Advanced Threat Hunting & SIEM)
+                </div>
+                <div class="course-card" data-course-id="blue-03">
+                    <div class="course-header">
+                        <div class="course-title-wrap">
+                            <span class="course-abbrev-badge">Threat Hunting & IR</span>
+                            <h3 class="course-title">الاستجابة للحوادث المتقدمة وصيد التهديدات (Threat Hunting & Advanced Incident Response)</h3>
+                        </div>
+                        <span class="badge" style="background:rgba(59,130,246,0.15); color:#93c5fd; padding:6px 14px; border-radius:20px; font-size:0.82rem; border:1px solid rgba(59,130,246,0.3);">
+                            Senior Threat Hunter
+                        </span>
+                    </div>
+                    <div class="course-details-grid">
+                        <div class="course-detail-item">
+                            <i class="fas fa-chalkboard-user"></i>
+                            <div>
+                                <div class="detail-label">المدرب / المهندس:</div>
+                                <div class="detail-value">نخبة مهندسي الدفاع السيبراني العربي (Cyber Blue Team Specialists)</div>
+                            </div>
+                        </div>
+                        <div class="course-detail-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <div class="detail-label">مدة ومستوى الكورس:</div>
+                                <div class="detail-value">مسار تدريبي عالي المستوى لغرف العمليات الأمنية</div>
+                            </div>
+                        </div>
+                        <div class="course-detail-item">
+                            <i class="fas fa-bookmark"></i>
+                            <div>
+                                <div class="detail-label">الاسم المختصر:</div>
+                                <div class="detail-value">Threat Hunting & IR</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="course-desc">تقنيات متقدمة لصيد التهديدات السيبرانية المعقدة (Threat Hunting)، إدارة ومراقبة منصات SIEM و EDR الحديثة، التحقيق في هجمات الفدية والبرمجيات الخبيثة المتقدمة (APTs) وتطبيق إطار العمل MITRE ATT&CK.</p>
+                    <div class="course-actions">
+                        <div class="course-tags">
+                            <span class="course-tag">Threat Hunting</span>
+                            <span class="course-tag">SIEM</span>
+                            <span class="course-tag">EDR</span>
+                            <span class="course-tag">متقدم</span>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=6P8N7VW21MQ&list=PLgKWvRMsdLZ4N_okwVWqB6cgqeVQtZNC4" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                            <i class="fas fa-play-circle"></i> بدء دراسة الكورس الآن
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-copy">
+                جميع الحقوق محفوظة &copy; 2027 منصة <strong>ArabSecurity</strong>
+            </div>
+            <div class="footer-designer">
+                تصميم وتطوير: <span class="dynamic-designer-name">Mostafa Ahmed</span>
+            </div>
+            <ul class="footer-links">
+                <li><a href="teams.html">المسارات</a></li>
+                <li><a href="tools.html">الأدوات</a></li>
+                <li><a href="about.html">حول المنصة</a></li>
+                <li><a href="support.html">الدعم الفني</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="js/admin-config.js"></script>
+    <script src="js/default-data.js"></script>
+    <script src="js/site-data.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

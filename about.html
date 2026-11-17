@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حول المنصة | ArabSecurity</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="site-dynamic-bg"></div>
+
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo">
+                <div class="brand-icon"><i class="fas fa-shield-virus"></i></div>
+                <span class="brand-name">ArabSecurity</span>
+            </a>
+
+            <ul class="nav-links">
+                <li class="nav-item"><a href="index.html"><i class="fas fa-house"></i> الرئيسية</a></li>
+                <li class="nav-item"><a href="teams.html"><i class="fas fa-route"></i> المسارات</a></li>
+                <li class="nav-item"><a href="tools.html"><i class="fas fa-toolbox"></i> الأدوات</a></li>
+                <li class="nav-item"><a href="about.html" class="active"><i class="fas fa-circle-info"></i> حول</a></li>
+                <li class="nav-item"><a href="support.html"><i class="fas fa-headset"></i> الدعم</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="search-trigger-btn" aria-label="بحث في المنصة">
+                    <i class="fas fa-search"></i>
+                    <span>بحث / أوامر</span>
+                    <span class="search-kbd">Ctrl K</span>
+                </button>
+                <button class="mobile-menu-btn" aria-label="القائمة"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <div class="search-modal" id="searchModal">
+        <div class="search-box">
+            <div class="search-input-wrapper">
+                <i class="fas fa-search" style="color:var(--neon-purple); font-size:1.1rem;"></i>
+                <input type="text" id="siteSearchInput" placeholder="اكتب للبحث أو اكتب /admin للوحة التحكم..." autocomplete="off">
+                <button id="closeSearchModal" style="background:none; border:none; color:var(--text-muted); cursor:pointer;"><i class="fas fa-times"></i></button>
+            </div>
+            <ul class="search-results-list" id="searchResults"></ul>
+            <div class="search-hint">
+                <span>اكتب <code>/admin</code> للوصول المباشر للوحة التحكم</span>
+                <span>ESC للإغلاق</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="main-wrapper">
+        <div class="page-header">
+            <div class="hero-badge">
+                <i class="fas fa-eye"></i>
+                <span>رؤيتنا ورسالتنا للأمن السيبراني العربي</span>
+            </div>
+            <h1 class="page-title">عن منصة ArabSecurity</h1>
+            <p class="page-subtitle">
+                مبادرة عربية تقنية تهدف إلى سد الفجوة في مصادر التعلم المنهجية لمجالات الأمن السيبراني والأمن الهجومي والدفاعي.
+            </p>
+        </div>
+
+        <!-- تفاصيل المنصة وقيمها -->
+        <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:22px; padding:40px; margin-bottom:40px; backdrop-filter:blur(16px);">
+            <h2 style="font-family:var(--font-heading); color:#ffffff; font-size:1.8rem; margin-bottom:16px;">
+                <i class="fas fa-bullseye" style="color:var(--neon-purple); margin-left:10px;"></i> رسالتنا وهدفنا
+            </h2>
+            <p style="color:var(--text-secondary); line-height:1.9; font-size:1.05rem; margin-bottom:24px;">
+                انطلقت منصة <strong>ArabSecurity</strong> لتكون بوصلة كل طالب وباحث وشغوف بمجال أمن المعلومات في الوطن العربي. نؤمن بأن الوصول للمحتوى التقني عالي الجودة يجب أن يكون منظماً، عملياً، وخالياً من التشتت. بدلاً من التيه بين مئات الدورات العشوائية، قمنا ببناء مسارات محددة المعالم تبدأ من الأساسيات وتنتقل بك إلى الريد تيم أو البلو تيم بدقة متناهية.
+            </p>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:24px; margin-top:30px;">
+                <div style="background:rgba(10,6,18,0.7); border:1px solid rgba(139,92,246,0.2); border-radius:14px; padding:20px;">
+                    <h4 style="color:#ffffff; font-family:var(--font-heading); margin-bottom:8px; display:flex; align-items:center; gap:8px;">
+                        <i class="fas fa-check" style="color:var(--neon-purple);"></i> التنظيم المنهجي
+                    </h4>
+                    <p style="color:var(--text-muted); font-size:0.92rem;">ربط الكورسات بترتيب تصاعدي يضمن استيعاب المفاهيم بدون أي فجوات معرفية.</p>
+                </div>
+
+                <div style="background:rgba(10,6,18,0.7); border:1px solid rgba(139,92,246,0.2); border-radius:14px; padding:20px;">
+                    <h4 style="color:#ffffff; font-family:var(--font-heading); margin-bottom:8px; display:flex; align-items:center; gap:8px;">
+                        <i class="fas fa-award" style="color:var(--neon-purple);"></i> شهادات واعتمادات دولية
+                    </h4>
+                    <p style="color:var(--text-muted); font-size:0.92rem;">تركيز المسارات على التحضير العملي لأقوى الشهادات مثل eJPT, OSCP, Network+, Security+.</p>
+                </div>
+
+                <div style="background:rgba(10,6,18,0.7); border:1px solid rgba(139,92,246,0.2); border-radius:14px; padding:20px;">
+                    <h4 style="color:#ffffff; font-family:var(--font-heading); margin-bottom:8px; display:flex; align-items:center; gap:8px;">
+                        <i class="fas fa-screwdriver-wrench" style="color:var(--neon-purple);"></i> أدوات تطبيقية
+                    </h4>
+                    <p style="color:var(--text-muted); font-size:0.92rem;">مكتبة متجددة بأفضل أدوات الاختبار والتحليل مع التحديث المستمر من لوحة الإدارة.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- بطاقة المصمم مصطفى أحمد البارزة كما طلب المستخدم -->
+        <section class="designer-showcase" style="margin-top:20px;">
+            <div class="designer-avatar">
+                <i class="fas fa-laptop-code"></i>
+            </div>
+            <div class="designer-info">
+                <h3>المطور والمصمم: <span class="dynamic-designer-name">Mostafa Ahmed</span></h3>
+                <div class="designer-role">Lead Architect & Cybersecurity Platform Designer</div>
+                <p class="designer-bio">
+                    تم ابتكار وتصميم منصة <strong>ArabSecurity</strong> برؤية المصمم والمطور <strong>Mostafa Ahmed</strong>، بهدف تقديم منصة تعليمية عربية متكاملة تجمع بين القوة التقنية وجماليات التصميم السلس المستوحى من نظام Kali Linux مع إضاءات النيون البنفسجية المتدرجة، لتمكين الشباب العربي من قيادة مستقبل الأمن السيبراني العالمي.
+                </p>
+                <div style="margin-top:16px; display:flex; gap:12px; flex-wrap:wrap;">
+                    <span class="badge" style="background:rgba(139,92,246,0.2); color:var(--neon-purple); border:1px solid rgba(139,92,246,0.4); padding:6px 14px; border-radius:20px; font-size:0.85rem;">
+                        <i class="fas fa-crown"></i> مصمم المنصة
+                    </span>
+                    <span class="badge" style="background:rgba(139,92,246,0.2); color:var(--neon-purple); border:1px solid rgba(139,92,246,0.4); padding:6px 14px; border-radius:20px; font-size:0.85rem;">
+                        <i class="fas fa-terminal"></i> مطور النظام ولوحة الإدارة
+                    </span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-copy">
+                جميع الحقوق محفوظة &copy; 2027 منصة <strong>ArabSecurity</strong>
+            </div>
+            <div class="footer-designer">
+                تصميم وتطوير: <span class="dynamic-designer-name">Mostafa Ahmed</span>
+            </div>
+            <ul class="footer-links">
+                <li><a href="teams.html">المسارات</a></li>
+                <li><a href="tools.html">الأدوات</a></li>
+                <li><a href="about.html">حول المنصة</a></li>
+                <li><a href="support.html">الدعم الفني</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="js/admin-config.js"></script>
+    <script src="js/default-data.js"></script>
+    <script src="js/site-data.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

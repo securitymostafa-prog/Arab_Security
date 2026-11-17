@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مسار الريد تيم (Red Team) | ArabSecurity</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="site-dynamic-bg"></div>
+
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo">
+                <div class="brand-icon"><i class="fas fa-shield-virus"></i></div>
+                <span class="brand-name">ArabSecurity</span>
+            </a>
+
+            <ul class="nav-links">
+                <li class="nav-item"><a href="index.html"><i class="fas fa-house"></i> الرئيسية</a></li>
+                <li class="nav-item"><a href="teams.html" class="active"><i class="fas fa-route"></i> المسارات</a></li>
+                <li class="nav-item"><a href="tools.html"><i class="fas fa-toolbox"></i> الأدوات</a></li>
+                <li class="nav-item"><a href="about.html"><i class="fas fa-circle-info"></i> حول</a></li>
+                <li class="nav-item"><a href="support.html"><i class="fas fa-headset"></i> الدعم</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="search-trigger-btn" aria-label="بحث في المنصة">
+                    <i class="fas fa-search"></i>
+                    <span>بحث / أوامر</span>
+                    <span class="search-kbd">Ctrl K</span>
+                </button>
+                <button class="mobile-menu-btn" aria-label="القائمة"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <div class="search-modal" id="searchModal">
+        <div class="search-box">
+            <div class="search-input-wrapper">
+                <i class="fas fa-search" style="color:var(--neon-purple); font-size:1.1rem;"></i>
+                <input type="text" id="siteSearchInput" placeholder="اكتب للبحث أو اكتب /admin للوحة التحكم..." autocomplete="off">
+                <button id="closeSearchModal" style="background:none; border:none; color:var(--text-muted); cursor:pointer;"><i class="fas fa-times"></i></button>
+            </div>
+            <ul class="search-results-list" id="searchResults"></ul>
+            <div class="search-hint">
+                <span>اكتب <code>/admin</code> للوصول المباشر للوحة التحكم</span>
+                <span>ESC للإغلاق</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="main-wrapper">
+        <div class="page-header">
+            <div class="hero-badge" style="border-color:rgba(239,68,68,0.4); color:#f87171; background:rgba(239,68,68,0.1);">
+                <i class="fas fa-user-ninja"></i>
+                <span>مسار الهكر الأخلاقي واختبار الاختراق</span>
+            </div>
+            <h1 class="page-title">مسار الريد تيم (Red Team)</h1>
+            <p class="page-subtitle">
+                خارطة طريق كاملة تنقسم إلى 3 مستويات: المبتدئ (PTS / eJPT v2)، المتوسط (OSCP / PEN-200)، والمتقدم في اختبار اختراق تطبيقات الويب واصطياد الثغرات (Bug Bounty).
+            </p>
+        </div>
+
+        <!-- حاوية الكورسات الديناميكية والمدمجة برمجياً -->
+        <div id="redTeamCoursesContainer">
+            <!-- المستوى المبتدئ -->
+            <div class="courses-level-section">
+                <div class="section-level-badge">
+                    <i class="fas fa-layer-group"></i> المستوى الأول: المبتدئ (Beginner)
+                </div>
+                <div class="course-card" data-course-id="red-01">
+                    <div class="course-header">
+                        <div class="course-title-wrap">
+                            <span class="course-abbrev-badge">PTS / eJPT v2</span>
+                            <h3 class="course-title">Penetration Testing Student (PTS) / كورس اختبار الاختراق للمبتدئين</h3>
+                        </div>
+                        <span class="badge" style="background:rgba(139,92,246,0.15); color:var(--neon-purple); padding:6px 14px; border-radius:20px; font-size:0.82rem; border:1px solid rgba(139,92,246,0.3);">
+                            eJPT v2 Prep
+                        </span>
+                    </div>
+                    <div class="course-details-grid">
+                        <div class="course-detail-item">
+                            <i class="fas fa-chalkboard-user"></i>
+                            <div>
+                                <div class="detail-label">المدرب / المهندس:</div>
+                                <div class="detail-value">أكاديمية نت رايدرز (Netriders Academy) / م. طارق الجيلاني</div>
+                            </div>
+                        </div>
+                        <div class="course-detail-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <div class="detail-label">مدة ومستوى الكورس:</div>
+                                <div class="detail-value">دورة مكثفة مع لابات وتطبيق عملي</div>
+                            </div>
+                        </div>
+                        <div class="course-detail-item">
+                            <i class="fas fa-bookmark"></i>
+                            <div>
+                                <div class="detail-label">الاسم المختصر:</div>
+                                <div class="detail-value">PTS / eJPT v2</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="course-desc">كورس معتمد ومصمم خصيصاً لتأسيس الراغبين في دخول مجال الـ Red Team، يغطي منهجية اختبار الاختراق، فحص الشبكات واستكشاف الثغرات وتأهيلك العملي لاجتياز شهادة eJPT العالمية.</p>
+                    <div class="course-actions">
+                        <div class="course-tags">
+                            <span class="course-tag">Red Team</span>
+                            <span class="course-tag">eJPT</span>
+                            <span class="course-tag">مبتدئ</span>
+                            <span class="course-tag">اختبار اختراق</span>
+                        </div>
+                        <a href="https://netriders.academy/all-courses/penetration-testing-student/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                            <i class="fas fa-play-circle"></i> بدء دراسة الكورس الآن
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- المستوى المتوسط -->
+            <div class="courses-level-section">
+                <div class="section-level-badge">
+                    <i class="fas fa-layer-group"></i> المستوى الثاني: المتوسط (Intermediate)
+                </div>
+                <div class="course-card" data-course-id="red-02">
+                    <div class="course-header">
+                        <div class="course-title-wrap">
+                            <span class="course-abbrev-badge">OSCP / PEN-200</span>
+                            <h3 class="course-title">دورة التحضير لشهادة OSCP / OSCP+ (PEN-200) باللغة العربية</h3>
+                        </div>
+                        <span class="badge" style="background:rgba(139,92,246,0.15); color:var(--neon-purple); padding:6px 14px; border-radius:20px; font-size:0.82rem; border:1px solid rgba(139,92,246,0.3);">
+                            OSCP+ 2025
+                        </span>
+                    </div>
+                    <div class="course-details-grid">
+                        <div class="course-detail-item">
+                            <i class="fas fa-chalkboard-user"></i>
+                            <div>
+                                <div class="detail-label">المدرب / المهندس:</div>
+                                <div class="detail-value">MrLimbo | أمن سيبراني واختراق أخلاقي (@Limbo0x01)</div>
+                            </div>
+                        </div>
+                        <div class="course-detail-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <div class="detail-label">مدة ومستوى الكورس:</div>
+                                <div class="detail-value">سلسلة فيديوهات شاملة ولابات متقدمة</div>
+                            </div>
+                        </div>
+                        <div class="course-detail-item">
+                            <i class="fas fa-bookmark"></i>
+                            <div>
+                                <div class="detail-label">الاسم المختصر:</div>
+                                <div class="detail-value">OSCP / PEN-200</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="course-desc">الدورة العربية المتكاملة للتحضير لأقوى وأشهر شهادة عملية في اختبار الاختراق عالمياً (OSCP PEN-200)، تشمل استغلال الثغرات، رفع الصلاحيات (Privilege Escalation)، ومحاكاة هجمات Active Directory الواقعية.</p>
+                    <div class="course-actions">
+                        <div class="course-tags">
+                            <span class="course-tag">OSCP</span>
+                            <span class="course-tag">PEN-200</span>
+                            <span class="course-tag">متوسط</span>
+                            <span class="course-tag">Red Team</span>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=7gXkwAmLCzI&list=PL5dZpxpUkHPOeYRHNLOCapZssjgwG6lVr" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                            <i class="fas fa-play-circle"></i> بدء دراسة الكورس الآن
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- المستوى المتقدم -->
+            <div class="courses-level-section">
+                <div class="section-level-badge">
+                    <i class="fas fa-layer-group"></i> المستوى الثالث: المتقدم (Advanced)
+                </div>
+                <div class="course-card" data-course-id="red-03">
+                    <div class="course-header">
+                        <div class="course-title-wrap">
+                            <span class="course-abbrev-badge">Web Pentest / Bug Bounty</span>
+                            <h3 class="course-title">اختبار اختراق تطبيقات الويب واصطياد الثغرات (Web Pentesting & Bug Bounty)</h3>
+                        </div>
+                        <span class="badge" style="background:rgba(139,92,246,0.15); color:var(--neon-purple); padding:6px 14px; border-radius:20px; font-size:0.82rem; border:1px solid rgba(139,92,246,0.3);">
+                            Bug Bounty Hunter
+                        </span>
+                    </div>
+                    <div class="course-details-grid">
+                        <div class="course-detail-item">
+                            <i class="fas fa-chalkboard-user"></i>
+                            <div>
+                                <div class="detail-label">المدرب / المهندس:</div>
+                                <div class="detail-value">المهندس إبراهيم حجازي (Eng. Ibrahim Hegazy)</div>
+                            </div>
+                        </div>
+                        <div class="course-detail-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <div class="detail-label">مدة ومستوى الكورس:</div>
+                                <div class="detail-value">دورة عملية متقدمة مع أمثلة حية وحالات واقعية</div>
+                            </div>
+                        </div>
+                        <div class="course-detail-item">
+                            <i class="fas fa-bookmark"></i>
+                            <div>
+                                <div class="detail-label">الاسم المختصر:</div>
+                                <div class="detail-value">Web Pentest / Bug Bounty</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="course-desc">دورة احترافية متقدمة من أحد أبرز خبراء أمن الويب في العالم العربي، تشرح تفاصيل استغلال ثغرات الويب الخطيرة (OWASP Top 10)، فحص منطق التطبيقات، احتراف Burp Suite، وكيفية اصطياد الثغرات الأمنية وكتابة تقارير احترافية.</p>
+                    <div class="course-actions">
+                        <div class="course-tags">
+                            <span class="course-tag">Web Pentest</span>
+                            <span class="course-tag">OWASP</span>
+                            <span class="course-tag">Burp Suite</span>
+                            <span class="course-tag">متقدم</span>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=BjfCWSFmIFI&list=PLFp3U4AOU6ACPUGth26yLFOMNIVuE67u4" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                            <i class="fas fa-play-circle"></i> بدء دراسة الكورس الآن
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-copy">
+                جميع الحقوق محفوظة &copy; 2027 منصة <strong>ArabSecurity</strong>
+            </div>
+            <div class="footer-designer">
+                تصميم وتطوير: <span class="dynamic-designer-name">Mostafa Ahmed</span>
+            </div>
+            <ul class="footer-links">
+                <li><a href="teams.html">المسارات</a></li>
+                <li><a href="tools.html">الأدوات</a></li>
+                <li><a href="about.html">حول المنصة</a></li>
+                <li><a href="support.html">الدعم الفني</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="js/admin-config.js"></script>
+    <script src="js/default-data.js"></script>
+    <script src="js/site-data.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

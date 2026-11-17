@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المسارات التعليمية | ArabSecurity</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- خلفية كالي لينكس المتدرجة -->
+    <div class="site-dynamic-bg"></div>
+
+    <!-- الشريط العلوي (Navbar) -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo">
+                <div class="brand-icon"><i class="fas fa-shield-virus"></i></div>
+                <span class="brand-name">ArabSecurity</span>
+            </a>
+
+            <ul class="nav-links">
+                <li class="nav-item"><a href="index.html"><i class="fas fa-house"></i> الرئيسية</a></li>
+                <li class="nav-item"><a href="teams.html" class="active"><i class="fas fa-route"></i> المسارات</a></li>
+                <li class="nav-item"><a href="tools.html"><i class="fas fa-toolbox"></i> الأدوات</a></li>
+                <li class="nav-item"><a href="about.html"><i class="fas fa-circle-info"></i> حول</a></li>
+                <li class="nav-item"><a href="support.html"><i class="fas fa-headset"></i> الدعم</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="search-trigger-btn" aria-label="بحث في المنصة">
+                    <i class="fas fa-search"></i>
+                    <span>بحث / أوامر</span>
+                    <span class="search-kbd">Ctrl K</span>
+                </button>
+                <button class="mobile-menu-btn" aria-label="القائمة"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- نافذة البحث السريع -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-box">
+            <div class="search-input-wrapper">
+                <i class="fas fa-search" style="color:var(--neon-purple); font-size:1.1rem;"></i>
+                <input type="text" id="siteSearchInput" placeholder="اكتب للبحث أو اكتب /admin للوحة التحكم..." autocomplete="off">
+                <button id="closeSearchModal" style="background:none; border:none; color:var(--text-muted); cursor:pointer;"><i class="fas fa-times"></i></button>
+            </div>
+            <ul class="search-results-list" id="searchResults"></ul>
+            <div class="search-hint">
+                <span>اكتب <code>/admin</code> للوصول المباشر للوحة التحكم</span>
+                <span>ESC للإغلاق</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="main-wrapper">
+        <div class="page-header">
+            <div class="hero-badge">
+                <i class="fas fa-compass"></i>
+                <span>اختر تخصصك وابدأ رحلتك الاحترافية</span>
+            </div>
+            <h1 class="page-title">المسارات التعليمية المتخصصة</h1>
+            <p class="page-subtitle">
+                ثلاثة مسارات رئيسية صُممت بدقة لتنقلك من الصفر في المفاهيم التأسيسية حتى أرقى مستويات الاحتراف في الأمن الهجومي والدفاعي.
+            </p>
+        </div>
+
+        <div class="tracks-container">
+            <!-- 1. مسار الأساسيات (Basics) -->
+            <div class="track-card basics-theme">
+                <div>
+                    <div class="track-icon-wrapper">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h2 class="track-title">مسار الأساسيات</h2>
+                    <p class="track-description">
+                        الركيزة الأولى التي لا غنى عنها لأي باحث أمني، تتضمن أربع خطوات منهجية: أساسيات لغة بايثون للبرمجة والأمن، إتقان أنظمة التشغيل ويندوز وكالي لينكس، بروتوكولات وهندسة الشبكات، ومفاهيم الأمن السيبراني.
+                    </p>
+                    <ul class="track-meta-list">
+                        <li class="track-meta-item"><i class="fas fa-check-circle"></i> الخطوة 1: البرمجة بلغة Python وبايثون للهكر</li>
+                        <li class="track-meta-item"><i class="fas fa-check-circle"></i> الخطوة 2: أنظمة ويندوز وكالي لينكس للمخترقين</li>
+                        <li class="track-meta-item"><i class="fas fa-check-circle"></i> الخطوة 3: الشبكات (Network+ و Cisco CCNA)</li>
+                        <li class="track-meta-item"><i class="fas fa-check-circle"></i> الخطوة 4: أساسيات الأمن السيبراني و Security+</li>
+                    </ul>
+                </div>
+                <a href="basics.html" class="btn btn-primary" style="width:100%; margin-top:20px;">
+                    <i class="fas fa-arrow-left"></i> دخول مسار الأساسيات
+                </a>
+            </div>
+
+            <!-- 2. مسار الريد تيم (Red Team) -->
+            <div class="track-card red-team-theme">
+                <div>
+                    <div class="track-icon-wrapper">
+                        <i class="fas fa-user-ninja"></i>
+                    </div>
+                    <h2 class="track-title">مسار الريد تيم (Red Team)</h2>
+                    <p class="track-description">
+                        عالم الأمن الهجومي واختبار الاختراق الأخلاقي، ينقسم إلى ثلاث مستويات تدريجية: المبتدئ (eJPT / PTS)، المتوسط للتحضير لشهادة OSCP / PEN-200، والمتقدم في اختبار اختراق تطبيقات الويب واصطياد الثغرات Bug Bounty.
+                    </p>
+                    <ul class="track-meta-list">
+                        <li class="track-meta-item"><i class="fas fa-check-circle"></i> المستوى المبتدئ: Penetration Testing Student (PTS)</li>
+                        <li class="track-meta-item"><i class="fas fa-check-circle"></i> المستوى المتوسط: دورة التحضير لشهادة OSCP / OSCP+</li>
+                        <li class="track-meta-item"><i class="fas fa-check-circle"></i> المستوى المتقدم: اختراق الويب والباغ باونتي مع م. إبراهيم حجازي</li>
+                    </ul>
+                </div>
+                <a href="red-team.html" class="btn btn-outline" style="width:100%; margin-top:20px; border-color:rgba(239,68,68,0.4); color:#fca5a5;">
+                    <i class="fas fa-arrow-left"></i> دخول مسار الريد تيم
+                </a>
+            </div>
+
+            <!-- 3. مسار البلو تيم (Blue Team) -->
+            <div class="track-card blue-team-theme">
+                <div>
+                    <div class="track-icon-wrapper">
+                        <i class="fas fa-shield-halved"></i>
+                    </div>
+                    <h2 class="track-title">مسار البلو تيم (Blue Team)</h2>
+                    <p class="track-description">
+                        الدفاع السيبراني، مراقبة غرف العمليات الأمنية (SOC)، التحقيق الجنائي الرقمي (DFIR)، وتحليل الهجمات السيبرانية وصيد التهديدات المتقدمة لحماية البنى التحتية والتصدي للاختراقات.
+                    </p>
+                    <ul class="track-meta-list">
+                        <li class="track-meta-item"><i class="fas fa-check-circle"></i> المستوى المبتدئ: أساسيات البلو تيم ومحلل SOC L1</li>
+                        <li class="track-meta-item"><i class="fas fa-check-circle"></i> المستوى المتوسط: التحقيق الجنائي الرقمي ولابات CyberDefenders</li>
+                        <li class="track-meta-item"><i class="fas fa-check-circle"></i> المستوى المتقدم: صيد التهديدات المتقدمة Threat Hunting & SIEM</li>
+                    </ul>
+                </div>
+                <a href="blue-team.html" class="btn btn-outline" style="width:100%; margin-top:20px; border-color:rgba(59,130,246,0.4); color:#93c5fd;">
+                    <i class="fas fa-arrow-left"></i> دخول مسار البلو تيم
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- الفوتر -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-copy">
+                جميع الحقوق محفوظة &copy; 2027 منصة <strong>ArabSecurity</strong>
+            </div>
+            <div class="footer-designer">
+                تصميم وتطوير: <span class="dynamic-designer-name">Mostafa Ahmed</span>
+            </div>
+            <ul class="footer-links">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="tools.html">الأدوات</a></li>
+                <li><a href="about.html">حول المنصة</a></li>
+                <li><a href="support.html">الدعم الفني</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="js/admin-config.js"></script>
+    <script src="js/default-data.js"></script>
+    <script src="js/site-data.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

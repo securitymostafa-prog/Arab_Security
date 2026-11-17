@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدعم الفني والتواصل | ArabSecurity</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="site-dynamic-bg"></div>
+
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo">
+                <div class="brand-icon"><i class="fas fa-shield-virus"></i></div>
+                <span class="brand-name">ArabSecurity</span>
+            </a>
+
+            <ul class="nav-links">
+                <li class="nav-item"><a href="index.html"><i class="fas fa-house"></i> الرئيسية</a></li>
+                <li class="nav-item"><a href="teams.html"><i class="fas fa-route"></i> المسارات</a></li>
+                <li class="nav-item"><a href="tools.html"><i class="fas fa-toolbox"></i> الأدوات</a></li>
+                <li class="nav-item"><a href="about.html"><i class="fas fa-circle-info"></i> حول</a></li>
+                <li class="nav-item"><a href="support.html" class="active"><i class="fas fa-headset"></i> الدعم</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="search-trigger-btn" aria-label="بحث في المنصة">
+                    <i class="fas fa-search"></i>
+                    <span>بحث / أوامر</span>
+                    <span class="search-kbd">Ctrl K</span>
+                </button>
+                <button class="mobile-menu-btn" aria-label="القائمة"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <div class="search-modal" id="searchModal">
+        <div class="search-box">
+            <div class="search-input-wrapper">
+                <i class="fas fa-search" style="color:var(--neon-purple); font-size:1.1rem;"></i>
+                <input type="text" id="siteSearchInput" placeholder="اكتب للبحث أو اكتب /admin للوحة التحكم..." autocomplete="off">
+                <button id="closeSearchModal" style="background:none; border:none; color:var(--text-muted); cursor:pointer;"><i class="fas fa-times"></i></button>
+            </div>
+            <ul class="search-results-list" id="searchResults"></ul>
+            <div class="search-hint">
+                <span>اكتب <code>/admin</code> للوصول المباشر للوحة التحكم</span>
+                <span>ESC للإغلاق</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="main-wrapper">
+        <div class="page-header">
+            <div class="hero-badge">
+                <i class="fas fa-headset"></i>
+                <span>فريق الدعم الفني والاستفسارات السيبرانية</span>
+            </div>
+            <h1 class="page-title">قنوات الدعم والتواصل</h1>
+            <p class="page-subtitle">
+                يسعدنا الإجابة على كافة استفساراتكم واقتراحاتكم لتطوير المنصة أو لطلب استشارات ومساعدات في مسارات الأمن السيبراني.
+            </p>
+        </div>
+
+        <!-- بطاقات البريد الإلكتروني الرسمي -->
+        <div class="support-cards-grid">
+            <!-- البريد الأول -->
+            <div class="email-card">
+                <div class="email-icon">
+                    <i class="fas fa-envelope-open-text"></i>
+                </div>
+                <h3 style="color:#ffffff; font-family:var(--font-heading); margin-bottom:10px;">البريد الإلكتروني المباشر 1</h3>
+                <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:14px;">للاستفسارات العامة والملاحظات التقنية</p>
+                <div class="email-address">sa7amostafaahmed@gmail.com</div>
+                <div style="display:flex; justify-content:center; gap:10px;">
+                    <button class="copy-btn" data-copy="sa7amostafaahmed@gmail.com">
+                        <i class="fas fa-copy"></i> نسخ البريد
+                    </button>
+                    <a href="mailto:sa7amostafaahmed@gmail.com" class="btn btn-primary" style="padding:8px 18px; font-size:0.88rem;">
+                        <i class="fas fa-paper-plane"></i> إرسال رسالة
+                    </a>
+                </div>
+            </div>
+
+            <!-- البريد الثاني -->
+            <div class="email-card">
+                <div class="email-icon">
+                    <i class="fas fa-shield-cat"></i>
+                </div>
+                <h3 style="color:#ffffff; font-family:var(--font-heading); margin-bottom:10px;">البريد الأمني الرسمي 2</h3>
+                <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:14px;">للتواصل المتخصص والتقارير الأمنية</p>
+                <div class="email-address">mostafasecurity@gmail.com</div>
+                <div style="display:flex; justify-content:center; gap:10px;">
+                    <button class="copy-btn" data-copy="mostafasecurity@gmail.com">
+                        <i class="fas fa-copy"></i> نسخ البريد
+                    </button>
+                    <a href="mailto:mostafasecurity@gmail.com" class="btn btn-primary" style="padding:8px 18px; font-size:0.88rem;">
+                        <i class="fas fa-paper-plane"></i> إرسال رسالة
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- نموذج إرسال سريع -->
+        <div style="max-width:680px; margin:0 auto; background:var(--bg-card); border:1px solid var(--border-color); border-radius:20px; padding:36px 30px; box-shadow:var(--box-shadow-card);">
+            <h3 style="color:#ffffff; font-family:var(--font-heading); font-size:1.4rem; margin-bottom:10px; text-align:center;">
+                <i class="fas fa-message" style="color:var(--neon-purple); margin-left:8px;"></i> إرسال رسالة مباشرة
+            </h3>
+            <p style="color:var(--text-muted); font-size:0.9rem; text-align:center; margin-bottom:26px;">
+                يمكنك ملء النموذج التالي وسيصل إشعار فوري لفريق العمل
+            </p>
+
+            <form id="contactForm" onsubmit="handleSupportSubmit(event)">
+                <div class="form-group">
+                    <label class="form-label">الاسم الكامل</label>
+                    <input type="text" class="form-control" required placeholder="مثال: أحمد عبد الله">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">بريدك الإلكتروني</label>
+                    <input type="email" class="form-control" required placeholder="name@example.com" style="direction:ltr; text-align:right;">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">المسار أو الموضوع</label>
+                    <select class="form-control" style="background:#0d061a;">
+                        <option>استفسار حول مسار الريد تيم</option>
+                        <option>استفسار حول مسار البلو تيم</option>
+                        <option>استفسار حول مسار الأساسيات</option>
+                        <option>اقتراح أداة جديدة لمكتبة الأدوات</option>
+                        <option>أخرى</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">نص الرسالة</label>
+                    <textarea class="form-control" rows="4" required placeholder="اكتب استفسارك بالتفصيل هنا..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%; padding:14px; font-size:1rem;">
+                    <i class="fas fa-paper-plane"></i> إرسال الاستفسار الآن
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-copy">
+                جميع الحقوق محفوظة &copy; 2027 منصة <strong>ArabSecurity</strong>
+            </div>
+            <div class="footer-designer">
+                تصميم وتطوير: <span class="dynamic-designer-name">Mostafa Ahmed</span>
+            </div>
+            <ul class="footer-links">
+                <li><a href="teams.html">المسارات</a></li>
+                <li><a href="tools.html">الأدوات</a></li>
+                <li><a href="about.html">حول المنصة</a></li>
+                <li><a href="support.html">الدعم الفني</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="js/admin-config.js"></script>
+    <script src="js/default-data.js"></script>
+    <script src="js/site-data.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        function handleSupportSubmit(e) {
+            e.preventDefault();
+            showToast("تم استلام رسالتك بنجاح! سيتم التواصل معك عبر البريد الإلكتروني في أقرب وقت.");
+            document.getElementById('contactForm').reset();
+        }
+    </script>
+</body>
+</html>

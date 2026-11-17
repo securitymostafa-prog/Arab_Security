@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم الإدارة الشاملة | ArabSecurity Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body style="background:var(--bg-dark);">
+
+    <!-- خلفية الموقع المتدرجة -->
+    <div class="site-dynamic-bg"></div>
+
+    <div class="admin-dashboard-container">
+        <!-- القائمة الجانبية (Sidebar) -->
+        <aside class="admin-sidebar">
+            <div>
+                <div class="admin-sidebar-header">
+                    <a href="index.html" class="brand-logo" style="font-size:1.35rem;">
+                        <div class="brand-icon"><i class="fas fa-shield-virus"></i></div>
+                        <span class="brand-name">ArabSecurity</span>
+                    </a>
+                    <div style="margin-top:8px; font-size:0.8rem; color:var(--text-muted); display:flex; align-items:center; gap:6px;">
+                        <span style="width:8px; height:8px; border-radius:50%; background:#4ade80; display:inline-block; box-shadow:0 0 8px #4ade80;"></span>
+                        لوحة تحكم المشرف (محمية)
+                    </div>
+                </div>
+
+                <ul class="admin-nav-list">
+                    <li class="admin-nav-item active" data-tab="tabStats">
+                        <i class="fas fa-chart-line"></i>
+                        <span>إحصائيات وزيارات الموقع</span>
+                    </li>
+                    <li class="admin-nav-item" data-tab="tabCourses">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>إدارة الكورسات والمسارات</span>
+                    </li>
+                    <li class="admin-nav-item" data-tab="tabTools">
+                        <i class="fas fa-toolbox"></i>
+                        <span>مكتبة أدوات الأمن السيبراني</span>
+                    </li>
+                    <li class="admin-nav-item" data-tab="tabTheme">
+                        <i class="fas fa-palette"></i>
+                        <span>المظهر وألوان كالي لينكس</span>
+                    </li>
+                    <li class="admin-nav-item" data-tab="tabSettings">
+                        <i class="fas fa-sliders"></i>
+                        <span>نصوص البوابة وسنة 2027</span>
+                    </li>
+                    <li class="admin-nav-item" data-tab="tabSecurity">
+                        <i class="fas fa-key"></i>
+                        <span>أمان وبيانات تسجيل الدخول</span>
+                    </li>
+                    <li class="admin-nav-item" data-tab="tabBackup">
+                        <i class="fas fa-database"></i>
+                        <span>النسخ الاحتياطي واستعادة المصنع</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <a href="index.html" class="btn btn-outline" style="width:100%; font-size:0.88rem; padding:10px;">
+                    <i class="fas fa-arrow-up-right-from-square"></i> عرض الموقع الرئيسي
+                </a>
+                <button class="admin-logout-btn" id="adminLogoutBtn" style="width:100%;">
+                    <i class="fas fa-arrow-right-from-bracket"></i> تسجيل الخروج
+                </button>
+            </div>
+        </aside>
+
+        <!-- المحتوى الرئيسي للوحة الإدارة -->
+        <main class="admin-main-content">
+            <!-- الشريط العلوي -->
+            <div class="admin-top-bar">
+                <div class="admin-top-title">
+                    <h2>لوحة التحكم والإدارة</h2>
+                    <p>إدارة وتخصيص كافة صفحات ومحتويات وتفاصيل منصة ArabSecurity</p>
+                </div>
+                <div style="display:flex; align-items:center; gap:14px;">
+                    <div style="background:rgba(139,92,246,0.15); border:1px solid var(--border-color); padding:8px 16px; border-radius:30px; font-size:0.85rem; color:var(--neon-purple); display:flex; align-items:center; gap:8px;">
+                        <i class="fas fa-user-shield"></i>
+                        <span>المشرف: <strong id="adminDisplayUser">admin</strong></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================== 1. تبويب الإحصائيات وعداد الزيارات الحي ==================== -->
+            <div class="admin-tab-pane active" id="tabStats">
+                <div class="stats-actions-bar">
+                    <button class="btn btn-primary" id="refreshStatsBtn">
+                        <i class="fas fa-rotate"></i> تحديث وإعادة تشغيل العداد (Refresh)
+                    </button>
+                    <button class="btn btn-danger btn-sm" id="resetStatsBtn">
+                        <i class="fas fa-rotate-left"></i> تصفير العداد
+                    </button>
+                    <span style="font-size:0.85rem; color:var(--text-muted); margin-right:auto;">
+                        آخر تحديث للبيانات: <span id="statLastUpdated">الآن</span>
+                    </span>
+                </div>
+
+                <!-- بطاقات العدادات الحية -->
+                <div class="stats-cards-grid">
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <span class="stat-label">إجمالي الزيارات</span>
+                            <div class="stat-icon"><i class="fas fa-eye"></i></div>
+                        </div>
+                        <div class="stat-number" id="statTotalViews">0</div>
+                        <div class="stat-growth"><i class="fas fa-arrow-trend-up"></i> عداد حقيقي شغال ويتزايد تلقائياً</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <span class="stat-label">المستخدمين الفريدين</span>
+                            <div class="stat-icon"><i class="fas fa-users"></i></div>
+                        </div>
+                        <div class="stat-number" id="statUniqueVisitors">0</div>
+                        <div class="stat-growth"><i class="fas fa-user-check"></i> مستخدمين نشطين</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <span class="stat-label">زيارات اليوم</span>
+                            <div class="stat-icon"><i class="fas fa-calendar-day"></i></div>
+                        </div>
+                        <div class="stat-number" id="statTodayViews">0</div>
+                        <div class="stat-growth"><i class="fas fa-bolt"></i> نشاط الساعات الأخيرة</div>
+                    </div>
+                </div>
+
+                <!-- إحصائيات تفصيلية حسب الأقسام -->
+                <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:18px; padding:28px; margin-top:20px;">
+                    <h3 style="font-family:var(--font-heading); color:#ffffff; font-size:1.25rem; margin-bottom:20px;">
+                        <i class="fas fa-chart-pie" style="color:var(--neon-purple); margin-left:8px;"></i> تفاعل الزوار مع المسارات والأدوات
+                    </h3>
+
+                    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:18px;">
+                        <div style="background:rgba(10,6,18,0.7); border:1px solid rgba(239,68,68,0.3); border-radius:14px; padding:18px;">
+                            <div style="color:#fca5a5; font-size:0.85rem; margin-bottom:6px;"><i class="fas fa-user-ninja"></i> مسار الريد تيم</div>
+                            <div style="font-size:1.6rem; font-weight:700; color:#ffffff;" id="statRedViews">0</div>
+                        </div>
+                        <div style="background:rgba(10,6,18,0.7); border:1px solid rgba(59,130,246,0.3); border-radius:14px; padding:18px;">
+                            <div style="color:#93c5fd; font-size:0.85rem; margin-bottom:6px;"><i class="fas fa-shield-halved"></i> مسار البلو تيم</div>
+                            <div style="font-size:1.6rem; font-weight:700; color:#ffffff;" id="statBlueViews">0</div>
+                        </div>
+                        <div style="background:rgba(10,6,18,0.7); border:1px solid rgba(168,85,247,0.3); border-radius:14px; padding:18px;">
+                            <div style="color:var(--neon-purple); font-size:0.85rem; margin-bottom:6px;"><i class="fas fa-graduation-cap"></i> مسار الأساسيات</div>
+                            <div style="font-size:1.6rem; font-weight:700; color:#ffffff;" id="statBasicsViews">0</div>
+                        </div>
+                        <div style="background:rgba(10,6,18,0.7); border:1px solid rgba(139,92,246,0.3); border-radius:14px; padding:18px;">
+                            <div style="color:#c084fc; font-size:0.85rem; margin-bottom:6px;"><i class="fas fa-toolbox"></i> مكتبة الأدوات</div>
+                            <div style="font-size:1.6rem; font-weight:700; color:#ffffff;" id="statToolsViews">0</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================== 2. تبويب إدارة الكورسات والمسارات ==================== -->
+            <div class="admin-tab-pane" id="tabCourses">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+                    <div style="display:flex; align-items:center; gap:12px;">
+                        <label style="color:var(--text-muted); font-size:0.9rem;">تصفية حسب المسار:</label>
+                        <select id="courseTrackFilter" class="form-control" style="width:200px; padding:8px 14px; background:#0e081a;">
+                            <option value="all">جميع المسارات</option>
+                            <option value="red-team">مسار الريد تيم (Red Team)</option>
+                            <option value="blue-team">مسار البلو تيم (Blue Team)</option>
+                            <option value="basics">مسار الأساسيات</option>
+                        </select>
+                    </div>
+
+                    <button class="btn btn-primary" id="addNewCourseBtn">
+                        <i class="fas fa-plus"></i> إضافة كورس جديد للمنصة
+                    </button>
+                </div>
+
+                <div class="data-table-wrapper">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>الاختصار</th>
+                                <th>اسم الكورس</th>
+                                <th>المسار</th>
+                                <th>المحاضر / المهندس</th>
+                                <th>الرابط</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="coursesTableBody">
+                            <!-- صفوف الكورسات تملأ ديناميكياً -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- ==================== 3. تبويب إدارة الأدوات ==================== -->
+            <div class="admin-tab-pane" id="tabTools">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+                    <div style="display:flex; align-items:center; gap:12px;">
+                        <label style="color:var(--text-muted); font-size:0.9rem;">تصفية حسب الفئة:</label>
+                        <select id="toolCategoryFilter" class="form-control" style="width:230px; padding:8px 14px; background:#0e081a;">
+                            <option value="all">جميع الأدوات</option>
+                            <option value="web">اختبار اختراق الويب</option>
+                            <option value="network">اختبار اختراق الشبكات</option>
+                            <option value="osint">جمع المعلومات OSINT</option>
+                            <option value="wireless">اختراق WiFi واللاسلكي</option>
+                            <option value="passwords">كسر كلمات المرور</option>
+                        </select>
+                    </div>
+
+                    <button class="btn btn-primary" id="addNewToolBtn">
+                        <i class="fas fa-plus"></i> إضافة أداة أمنية جديدة
+                    </button>
+                </div>
+
+                <div class="data-table-wrapper">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>اسم الأداة</th>
+                                <th>الفئة والتصنيف</th>
+                                <th>الوصف والاستخدام</th>
+                                <th>الموقع الرسمي</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="toolsTableBody">
+                            <!-- صفوف الأدوات تملأ ديناميكياً -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- ==================== 4. تبويب تخصيص المظهر وخلفية كالي لينكس ==================== -->
+            <div class="admin-tab-pane" id="tabTheme">
+                <div class="theme-customizer-grid">
+                    <!-- صندوق الألوان -->
+                    <div class="customizer-box">
+                        <h3 style="color:#ffffff; font-family:var(--font-heading); font-size:1.3rem; margin-bottom:18px;">
+                            <i class="fas fa-palette" style="color:var(--neon-purple); margin-left:8px;"></i> درجات الألوان (الأسود والبنفسجي)
+                        </h3>
+
+                        <div class="color-picker-row">
+                            <div>
+                                <strong style="color:#ffffff;">اللون البنفسجي الرئيسي (Primary Purple)</strong>
+                                <div style="font-size:0.8rem; color:var(--text-muted);">لون الأزرار والنيون والعناوين</div>
+                            </div>
+                            <input type="color" id="primaryColorInput" class="color-input-circle" value="#8b5cf6">
+                        </div>
+
+                        <div class="color-picker-row">
+                            <div>
+                                <strong style="color:#ffffff;">البنفسجي المتدرج (Secondary Violet)</strong>
+                                <div style="font-size:0.8rem; color:var(--text-muted);">التدرج اللوني للبطاقات والظلال</div>
+                            </div>
+                            <input type="color" id="secondaryColorInput" class="color-input-circle" value="#6d28d9">
+                        </div>
+
+                        <div class="color-picker-row">
+                            <div>
+                                <strong style="color:#ffffff;">اللون الأسود الخلفي (Dark Backdrop)</strong>
+                                <div style="font-size:0.8rem; color:var(--text-muted);">عمق خلفية الموقع الداكنة</div>
+                            </div>
+                            <input type="color" id="bgColorInput" class="color-input-circle" value="#090514">
+                        </div>
+                    </div>
+
+                    <!-- صندوق خلفية كالي لينكس -->
+                    <div class="customizer-box">
+                        <h3 style="color:#ffffff; font-family:var(--font-heading); font-size:1.3rem; margin-bottom:18px;">
+                            <i class="fas fa-dragon" style="color:var(--neon-purple); margin-left:8px;"></i> خلفية كالي لينكس (Kali Linux Background)
+                        </h3>
+                        <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:14px;">
+                            اختر نمط دمج كالي لينكس مع الألوان، أو ضع رابط صورة كالي لينكس الخاصة بك لتسييحها مع الخلفية:
+                        </p>
+
+                        <div class="bg-presets-grid">
+                            <div class="bg-preset-item selected" data-bg-preset="kali-blend">
+                                <i class="fas fa-shield-virus" style="font-size:1.5rem; color:var(--neon-purple); margin-bottom:6px; display:block;"></i>
+                                <strong style="color:#ffffff; font-size:0.9rem;">تنين كالي المدمج (افتراضي)</strong>
+                            </div>
+                            <div class="bg-preset-item" data-bg-preset="cyber-grid">
+                                <i class="fas fa-border-none" style="font-size:1.5rem; color:var(--primary-purple); margin-bottom:6px; display:block;"></i>
+                                <strong style="color:#ffffff; font-size:0.9rem;">مصفوفة كالي سايبر نيون</strong>
+                            </div>
+                        </div>
+
+                        <div style="margin-top:20px;">
+                            <label class="form-label">رابط صورة مخصصة لكالي لينكس (اختياري)</label>
+                            <input type="url" id="customBgUrlInput" class="form-control" placeholder="https://example.com/kali-wallpaper.jpg" style="direction:ltr;">
+                            <div style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">
+                                ستندمج الصورة تلقائياً بتدرجات الأسود والبنفسجي الداكن لتكون متناسقة وسلسة في الخلفية.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top:24px; text-align:left;">
+                    <button class="btn btn-primary" id="saveThemeBtn" style="padding:13px 34px;">
+                        <i class="fas fa-floppy-disk"></i> حفظ وتطبيق المظهر على كامل الموقع
+                    </button>
+                </div>
+            </div>
+
+            <!-- ==================== 5. تبويب نصوص البوابة وسنة 2027 والمصمم ==================== -->
+            <div class="admin-tab-pane" id="tabSettings">
+                <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:18px; padding:32px; max-width:760px;">
+                    <h3 style="color:#ffffff; font-family:var(--font-heading); font-size:1.35rem; margin-bottom:20px;">
+                        <i class="fas fa-sliders" style="color:var(--neon-purple); margin-left:8px;"></i> نصوص الموقع والبيانات الأساسية
+                    </h3>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            الجملة الرئيسية في الواجهة (سنة البوابة):
+                            <span style="color:var(--neon-purple); font-size:0.8rem; margin-right:8px;">(موجودة برمجياً في index.html السطر 82)</span>
+                        </label>
+                        <input type="text" id="heroHeadlineInput" class="form-control" value="بوابة التميز السيبراني العربية 2027">
+                        <div style="font-size:0.8rem; color:var(--text-muted); margin-top:6px;">
+                            تستطيع تغيير السنة هنا مباشرة وسيتم تحديثها فوراً في الصفحة الرئيسية دون الحاجة للمس الأكواد!
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">اسم مصمم ومطور الموقع</label>
+                        <input type="text" id="designerNameInput" class="form-control" value="Mostafa Ahmed">
+                        <div style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">
+                            يظهر في الفوتر وفي صفحة حول وفي البطاقة التعريفية في الصفحة الرئيسية.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">البريد الإلكتروني للدعم 1</label>
+                        <input type="email" id="supportEmail1Input" class="form-control" value="sa7amostafaahmed@gmail.com" style="direction:ltr; text-align:right;">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">البريد الإلكتروني للدعم 2</label>
+                        <input type="email" id="supportEmail2Input" class="form-control" value="mostafasecurity@gmail.com" style="direction:ltr; text-align:right;">
+                    </div>
+
+                    <button class="btn btn-primary" id="saveGeneralSettingsBtn" style="padding:12px 30px; margin-top:10px;">
+                        <i class="fas fa-save"></i> حفظ التعديلات العامة
+                    </button>
+                </div>
+            </div>
+
+            <!-- ==================== 6. تبويب أمان وحساب الأدمن ==================== -->
+            <div class="admin-tab-pane" id="tabSecurity">
+                <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:18px; padding:32px; max-width:760px;">
+                    <h3 style="color:#ffffff; font-family:var(--font-heading); font-size:1.35rem; margin-bottom:12px;">
+                        <i class="fas fa-lock" style="color:var(--neon-purple); margin-left:8px;"></i> إعدادات تسجيل الدخول وحماية الأدمن
+                    </h3>
+
+                    <!-- توثيق مكان ملف بيانات الدخول كما طلب المستخدم -->
+                    <div style="background:rgba(139,92,246,0.12); border:1px solid rgba(139,92,246,0.3); border-radius:12px; padding:16px; margin-bottom:24px; font-size:0.9rem; line-height:1.7;">
+                        <div style="color:#ffffff; font-weight:600; margin-bottom:6px;">
+                            <i class="fas fa-folder-open" style="color:var(--neon-purple);"></i> أين توجد كلمة المرور واسم المستخدم في ملفات المشروع؟
+                        </div>
+                        <div>ملف الإعدادات الافتراضية هو: <code style="background:rgba(0,0,0,0.4); color:var(--neon-purple); padding:2px 8px; border-radius:4px; direction:ltr; display:inline-block;">js/admin-config.js</code></div>
+                        <div style="color:var(--text-muted); font-size:0.82rem; margin-top:4px;">
+                            موجودة في السطور 14 و 15 بالملف، ويمكنك أيضاً تغييرها وحفظها مباشرة من النموذج التالي:
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">اسم المستخدم الحالي للأدمن</label>
+                        <input type="text" id="adminUsernameInput" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">كلمة المرور الحالية للتأكيد</label>
+                        <input type="password" id="adminCurrentPasswordInput" class="form-control" required placeholder="أدخل كلمة المرور الحالية">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">كلمة المرور الجديدة</label>
+                        <input type="password" id="adminNewPasswordInput" class="form-control" required placeholder="أدخل كلمة المرور الجديدة القوية">
+                    </div>
+
+                    <button class="btn btn-primary" id="saveSecurityBtn" style="padding:12px 30px; margin-top:10px;">
+                        <i class="fas fa-key"></i> حفظ بيانات الدخول الجديدة
+                    </button>
+                </div>
+            </div>
+
+            <!-- ==================== 7. تبويب النسخ الاحتياطي ==================== -->
+            <div class="admin-tab-pane" id="tabBackup">
+                <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:18px; padding:32px; max-width:760px;">
+                    <h3 style="color:#ffffff; font-family:var(--font-heading); font-size:1.35rem; margin-bottom:16px;">
+                        <i class="fas fa-database" style="color:var(--neon-purple); margin-left:8px;"></i> إدارة البيانات والنسخ الاحتياطي
+                    </h3>
+                    <p style="color:var(--text-muted); font-size:0.92rem; line-height:1.7; margin-bottom:24px;">
+                        يمكنك تصدير كافة بيانات الموقع (الكورسات، الأدوات، الإحصائيات، والمظهر) كملف JSON لنسخها احتياطياً، أو استعادة الإعدادات الأصلية الافتراضية بنقرة واحدة.
+                    </p>
+
+                    <div style="display:flex; gap:16px; flex-wrap:wrap;">
+                        <button class="btn btn-primary" id="exportDataBtn">
+                            <i class="fas fa-download"></i> تصدير البيانات (JSON Backup)
+                        </button>
+                        <button class="btn btn-danger" id="resetToFactoryBtn">
+                            <i class="fas fa-trash-can-arrow-up"></i> استعادة الإعدادات الافتراضية الأصلية
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- نافذة المودال لإضافة / تعديل كورس -->
+    <div class="admin-modal-overlay" id="courseModal">
+        <div class="admin-modal-content">
+            <div class="modal-header">
+                <h3 id="courseModalTitle">إضافة كورس جديد</h3>
+                <button class="modal-close-btn" id="closeCourseModalBtn">&times;</button>
+            </div>
+            <form id="courseForm">
+                <input type="hidden" id="courseIdInput">
+
+                <div class="form-group">
+                    <label class="form-label">المسار التابع له الكورس</label>
+                    <select id="courseTrackInput" class="form-control" required style="background:#0c0618;">
+                        <option value="red-team">مسار الريد تيم (Red Team)</option>
+                        <option value="blue-team">مسار البلو تيم (Blue Team)</option>
+                        <option value="basics">مسار الأساسيات</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">المستوى أو الخطوة</label>
+                    <select id="courseLevelInput" class="form-control" required style="background:#0c0618;">
+                        <option value="beginner">المستوى المبتدئ (Beginner)</option>
+                        <option value="intermediate">المستوى المتوسط (Intermediate)</option>
+                        <option value="advanced">المستوى المتقدم (Advanced)</option>
+                        <option value="step-1">الخطوة 1: البرمجة</option>
+                        <option value="step-2">الخطوة 2: أنظمة التشغيل</option>
+                        <option value="step-3">الخطوة 3: الشبكات</option>
+                        <option value="step-4">الخطوة 4: أساسيات الأمن السيبراني</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">اسم الكورس بالكامل</label>
+                    <input type="text" id="courseTitleInput" class="form-control" required placeholder="مثال: دورة التحضير لشهادة eJPT v2">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">الاسم المختصر أو الشهادة</label>
+                    <input type="text" id="courseAbbrevInput" class="form-control" required placeholder="مثال: eJPT / PTS">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">المهندس / المنصة أو القناة</label>
+                    <input type="text" id="courseInstructorInput" class="form-control" required placeholder="مثال: م. طارق الجيلاني / نت رايدرز">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">مدة ومستوى الكورس</label>
+                    <input type="text" id="courseDurationInput" class="form-control" required placeholder="مثال: 40 ساعة تدريبية وتطبيق عملي">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">رابط الكورس أو قائمة التشغيل</label>
+                    <input type="url" id="courseUrlInput" class="form-control" required placeholder="https://..." style="direction:ltr;">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">شارة الكورس (Badge)</label>
+                    <input type="text" id="courseBadgeInput" class="form-control" placeholder="مثال: كورس معتمد أو OSCP+">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">وصف تفصيلي للكورس</label>
+                    <textarea id="courseDescInput" class="form-control" rows="3" required placeholder="اشرح محتوى وأهمية الكورس باختصار..."></textarea>
+                </div>
+
+                <div style="display:flex; justify-content:flex-end; gap:12px; margin-top:20px;">
+                    <button type="submit" class="btn btn-primary" style="padding:10px 24px;">حفظ الكورس</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- نافذة المودال لإضافة / تعديل أداة -->
+    <div class="admin-modal-overlay" id="toolModal">
+        <div class="admin-modal-content">
+            <div class="modal-header">
+                <h3 id="toolModalTitle">إضافة أداة جديدة</h3>
+                <button class="modal-close-btn" id="closeToolModalBtn">&times;</button>
+            </div>
+            <form id="toolForm">
+                <input type="hidden" id="toolIdInput">
+
+                <div class="form-group">
+                    <label class="form-label">تصنيف وفئة الأداة</label>
+                    <select id="toolCategoryInput" class="form-control" required style="background:#0c0618;">
+                        <option value="web">اختبار اختراق الويب</option>
+                        <option value="network">اختبار اختراق الشبكات</option>
+                        <option value="osint">جمع المعلومات OSINT</option>
+                        <option value="wireless">اختبار اختراق WiFi واللاسلكي</option>
+                        <option value="passwords">كسر كلمات المرور</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">اسم الأداة</label>
+                    <input type="text" id="toolNameInput" class="form-control" required placeholder="مثال: Burp Suite">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">رابط الموقع الرسمي للأداة</label>
+                    <input type="url" id="toolUrlInput" class="form-control" required placeholder="https://..." style="direction:ltr;">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">شارة الأداة (Badge)</label>
+                    <input type="text" id="toolBadgeInput" class="form-control" placeholder="مثال: Web Proxy & Scanner">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">وصف الأداة واستخداماتها</label>
+                    <textarea id="toolDescInput" class="form-control" rows="3" required placeholder="اشرح وظيفة الأداة وكيفية استخدامها..."></textarea>
+                </div>
+
+                <div style="display:flex; justify-content:flex-end; gap:12px; margin-top:20px;">
+                    <button type="submit" class="btn btn-primary" style="padding:10px 24px;">حفظ الأداة</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/admin-config.js"></script>
+    <script src="js/default-data.js"></script>
+    <script src="js/site-data.js"></script>
+    <script src="js/admin.js"></script>
+    <script>
+        // إظهار اسم الأدمن النشط
+        const creds = getActiveAdminCredentials();
+        const displayUser = document.getElementById('adminDisplayUser');
+        if (displayUser) displayUser.textContent = creds.username;
+    </script>
+</body>
+</html>

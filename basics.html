@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مسار الأساسيات (البرمجة والأنظمة والشبكات) | ArabSecurity</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="site-dynamic-bg"></div>
+
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo">
+                <div class="brand-icon"><i class="fas fa-shield-virus"></i></div>
+                <span class="brand-name">ArabSecurity</span>
+            </a>
+
+            <ul class="nav-links">
+                <li class="nav-item"><a href="index.html"><i class="fas fa-house"></i> الرئيسية</a></li>
+                <li class="nav-item"><a href="teams.html" class="active"><i class="fas fa-route"></i> المسارات</a></li>
+                <li class="nav-item"><a href="tools.html"><i class="fas fa-toolbox"></i> الأدوات</a></li>
+                <li class="nav-item"><a href="about.html"><i class="fas fa-circle-info"></i> حول</a></li>
+                <li class="nav-item"><a href="support.html"><i class="fas fa-headset"></i> الدعم</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="search-trigger-btn" aria-label="بحث في المنصة">
+                    <i class="fas fa-search"></i>
+                    <span>بحث / أوامر</span>
+                    <span class="search-kbd">Ctrl K</span>
+                </button>
+                <button class="mobile-menu-btn" aria-label="القائمة"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <div class="search-modal" id="searchModal">
+        <div class="search-box">
+            <div class="search-input-wrapper">
+                <i class="fas fa-search" style="color:var(--neon-purple); font-size:1.1rem;"></i>
+                <input type="text" id="siteSearchInput" placeholder="اكتب للبحث أو اكتب /admin للوحة التحكم..." autocomplete="off">
+                <button id="closeSearchModal" style="background:none; border:none; color:var(--text-muted); cursor:pointer;"><i class="fas fa-times"></i></button>
+            </div>
+            <ul class="search-results-list" id="searchResults"></ul>
+            <div class="search-hint">
+                <span>اكتب <code>/admin</code> للوصول المباشر للوحة التحكم</span>
+                <span>ESC للإغلاق</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="main-wrapper">
+        <div class="page-header">
+            <div class="hero-badge" style="border-color:rgba(168,85,247,0.4); color:var(--neon-purple); background:rgba(168,85,247,0.1);">
+                <i class="fas fa-graduation-cap"></i>
+                <span>الخطوات التأسيسية الأربعة لاحتراف الأمن السيبراني</span>
+            </div>
+            <h1 class="page-title">مسار الأساسيات الشامل</h1>
+            <p class="page-subtitle">
+                خطة منهجية مرتبة تبدأ بالبرمجة، ثم أنظمة التشغيل (Windows & Kali Linux)، ثم هندسة وبروتوكولات الشبكات، وتتوج بأقوى دورات ومفاهيم الأمن السيبراني.
+            </p>
+        </div>
+
+        <!-- حاوية خطوات الأساسيات الديناميكية والمدمجة برمجياً -->
+        <div id="basicsCoursesContainer">
+            <!-- الخطوة 1: البرمجة -->
+            <div class="courses-level-section">
+                <div class="section-level-badge">
+                    <i class="fas fa-code"></i> الخطوة الأولى: البرمجة (Programming)
+                </div>
+                <div class="course-card" data-course-id="basics-01">
+                    <div class="course-header">
+                        <div class="course-title-wrap">
+                            <span class="course-abbrev-badge">Python Fundamentals</span>
+                            <h3 class="course-title">دورة تعلم لغة بايثون كاملة من الصفر (Mastering Python)</h3>
+                        </div>
+                        <span class="badge" style="background:rgba(139,92,246,0.15); color:var(--neon-purple); padding:6px 14px; border-radius:20px; font-size:0.82rem; border:1px solid rgba(139,92,246,0.3);">
+                            Python Core
+                        </span>
+                    </div>
+                    <div class="course-details-grid">
+                        <div class="course-detail-item">
+                            <i class="fas fa-chalkboard-user"></i>
+                            <div>
+                                <div class="detail-label">المدرب / المهندس:</div>
+                                <div class="detail-value">المهندس أسامة الزيرو (Elzero Web School)</div>
+                            </div>
+                        </div>
+                        <div class="course-detail-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <div class="detail-label">مدة ومستوى الكورس:</div>
+                                <div class="detail-value">دورة تدريبية متكاملة تزيد عن 150 درساً تطبيقياً</div>
+                            </div>
+                        </div>
+                        <div class="course-detail-item">
+                            <i class="fas fa-bookmark"></i>
+                            <div>
+                                <div class="detail-label">الاسم المختصر:</div>
+                                <div class="detail-value">Python Fundamentals</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="course-desc">أقوى دورة عربية لتعلم بايثون من الصفر لغير المبرمجين وحتى المستويات الاحترافية، تشمل هياكل البيانات، البرمجة كائنية التوجه (OOP)، الخوارزميات، والتعامل مع الملفات ومكتبات بايثون الأساسية.</p>
+                    <div class="course-actions">
+                        <div class="course-tags">
+                            <span class="course-tag">بايثون</span>
+                            <span class="course-tag">الزيرو</span>
+                            <span class="course-tag">برمجة</span>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=mvZHDpCHphk&list=PLDoPjvoNmBAyE_gei5d18qkfIe-Z8mocs" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                            <i class="fas fa-play-circle"></i> بدء دراسة الكورس الآن
+                        </a>
+                    </div>
+                </div>
+
+                <div class="course-card" data-course-id="basics-02">
+                    <div class="course-header">
+                        <div class="course-title-wrap">
+                            <span class="course-abbrev-badge">Python For Hackers</span>
+                            <h3 class="course-title">بايثون للهكر واختبار الاختراق (Python for Ethical Hackers)</h3>
+                        </div>
+                        <span class="badge" style="background:rgba(139,92,246,0.15); color:var(--neon-purple); padding:6px 14px; border-radius:20px; font-size:0.82rem; border:1px solid rgba(139,92,246,0.3);">
+                            Offensive Python
+                        </span>
+                    </div>
+                    <div class="course-details-grid">
+                        <div class="course-detail-item">
+                            <i class="fas fa-chalkboard-user"></i>
+                            <div>
+                                <div class="detail-label">المدرب / المهندس:</div>
+                                <div class="detail-value">أكاديمية البرمجة الأمنية (CyberSec Academy)</div>
+                            </div>
+                        </div>
+                        <div class="course-detail-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <div class="detail-label">مدة ومستوى الكورس:</div>
+                                <div class="detail-value">شروحات عملية وتطبيقات أمنية متخصصة</div>
+                            </div>
+                        </div>
+                        <div class="course-detail-item">
+                            <i class="fas fa-bookmark"></i>
+                            <div>
+                                <div class="detail-label">الاسم المختصر:</div>
+                                <div class="detail-value">Python For Hackers</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="course-desc">توظيف بايثون في الهكر الأخلاقي واختبار الاختراق، بناء أدوات فحص الشبكة، أدوات سحب الحزم، سكربتات التخمين، وأتمتة المهام الأمنية وكتابة استغلالات مخصصة.</p>
+                    <div class="course-actions">
+                        <div class="course-tags">
+                            <span class="course-tag">بايثون</span>
+                            <span class="course-tag">هكر أخلاقي</span>
+                            <span class="course-tag">سكربتات</span>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=KMOS1aPgpgo&list=PLQecpJ5wKrfsF7mZVJxvy53I7FimkGxzZ" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                            <i class="fas fa-play-circle"></i> بدء دراسة الكورس الآن
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- الخطوة 2: أنظمة التشغيل -->
+            <div class="courses-level-section">
+                <div class="section-level-badge">
+                    <i class="fas fa-terminal"></i> الخطوة الثانية: أنظمة التشغيل (Operating Systems)
+                </div>
+                <div class="course-card" data-course-id="basics-03">
+                    <div class="course-header">
+                        <div class="course-title-wrap">
+                            <span class="course-abbrev-badge">Windows for CyberSec</span>
+                            <h3 class="course-title">ويندوز لمحترفي الأمن السيبراني (Windows for Cybersecurity Professionals)</h3>
+                        </div>
+                        <span class="badge" style="background:rgba(139,92,246,0.15); color:var(--neon-purple); padding:6px 14px; border-radius:20px; font-size:0.82rem; border:1px solid rgba(139,92,246,0.3);">
+                            Windows Architecture
+                        </span>
+                    </div>
+                    <div class="course-details-grid">
+                        <div class="course-detail-item">
+                            <i class="fas fa-chalkboard-user"></i>
+                            <div>
+                                <div class="detail-label">المدرب / المهندس:</div>
+                                <div class="detail-value">المهندس محمد خريشة (Mohammad Khreesha / تخناوي Technawi)</div>
+                            </div>
+                        </div>
+                        <div class="course-detail-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <div class="detail-label">مدة ومستوى الكورس:</div>
+                                <div class="detail-value">دورة تأسيسية متعمقة في معمارية الويندوز</div>
+                            </div>
+                        </div>
+                        <div class="course-detail-item">
+                            <i class="fas fa-bookmark"></i>
+                            <div>
+                                <div class="detail-label">الاسم المختصر:</div>
+                                <div class="detail-value">Windows Internals & Sec</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="course-desc">فهم عميق لبنية نظام التشغيل ويندوز، إدارة الخدمات والصلاحيات، سجل الأحداث (Event Viewer)، الريجستري (Windows Registry)، وأوامر سطر الأوامر PowerShell للأمان السيبراني.</p>
+                    <div class="course-actions">
+                        <div class="course-tags">
+                            <span class="course-tag">Windows</span>
+                            <span class="course-tag">تخناوي</span>
+                            <span class="course-tag">PowerShell</span>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=OpYXo_wrLXk&list=PLroS9tRyoUGrC8GOzQRhyYOfwnub2bvQv" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                            <i class="fas fa-play-circle"></i> بدء دراسة الكورس الآن
+                        </a>
+                    </div>
+                </div>
+
+                <div class="course-card" data-course-id="basics-04">
+                    <div class="course-header">
+                        <div class="course-title-wrap">
+                            <span class="course-abbrev-badge">Kali Linux Basics</span>
+                            <h3 class="course-title">أساسيات كالي لينكس للمخترقين (Kali Linux Basics for Hackers)</h3>
+                        </div>
+                        <span class="badge" style="background:rgba(139,92,246,0.15); color:var(--neon-purple); padding:6px 14px; border-radius:20px; font-size:0.82rem; border:1px solid rgba(139,92,246,0.3);">
+                            Linux Terminal Master
+                        </span>
+                    </div>
+                    <div class="course-details-grid">
+                        <div class="course-detail-item">
+                            <i class="fas fa-chalkboard-user"></i>
+                            <div>
+                                <div class="detail-label">المدرب / المهندس:</div>
+                                <div class="detail-value">قناة Cyber Guy (مستوحى من Linux Basics for Hackers)</div>
+                            </div>
+                        </div>
+                        <div class="course-detail-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <div class="detail-label">مدة ومستوى الكورس:</div>
+                                <div class="detail-value">سلسلة حلقات تطبيقية تبدأ من سطر الأوامر</div>
+                            </div>
+                        </div>
+                        <div class="course-detail-item">
+                            <i class="fas fa-bookmark"></i>
+                            <div>
+                                <div class="detail-label">الاسم المختصر:</div>
+                                <div class="detail-value">Kali Linux Basics</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="course-desc">شرح متكامل لأوامر كالي لينكس الأساسية والمتقدمة، إدارة الملفات، التحكم في الصلاحيات والمستخدمين، إعدادات الشبكة، والتعامل الاحترافي مع واجهة سطر الأوامر (Terminal).</p>
+                    <div class="course-actions">
+                        <div class="course-tags">
+                            <span class="course-tag">Kali Linux</span>
+                            <span class="course-tag">لينكس</span>
+                            <span class="course-tag">أوامر لينكس</span>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=ZVAddIMB3mg&list=PLDRMxi70CdSD48OPJbsDZRt4l0GvWJ2iG" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                            <i class="fas fa-play-circle"></i> بدء دراسة الكورس الآن
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- الخطوة 3: الشبكات -->
+            <div class="courses-level-section">
+                <div class="section-level-badge">
+                    <i class="fas fa-network-wired"></i> الخطوة الثالثة: الشبكات (Networks)
+                </div>
+                <div class="course-card" data-course-id="basics-05">
+                    <div class="course-header">
+                        <div class="course-title-wrap">
+                            <span class="course-abbrev-badge">CompTIA Network+</span>
+                            <h3 class="course-title">دورة شبكات CompTIA Network+ بالعربي الشاملة</h3>
+                        </div>
+                        <span class="badge" style="background:rgba(139,92,246,0.15); color:var(--neon-purple); padding:6px 14px; border-radius:20px; font-size:0.82rem; border:1px solid rgba(139,92,246,0.3);">
+                            Network+ Certified
+                        </span>
+                    </div>
+                    <div class="course-details-grid">
+                        <div class="course-detail-item">
+                            <i class="fas fa-chalkboard-user"></i>
+                            <div>
+                                <div class="detail-label">المدرب / المهندس:</div>
+                                <div class="detail-value">المهندس سامح رمضان (Eng. Sameh Ramadan)</div>
+                            </div>
+                        </div>
+                        <div class="course-detail-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <div class="detail-label">مدة ومستوى الكورس:</div>
+                                <div class="detail-value">شرح أكاديمي وعملي شامل لمنهج Network+</div>
+                            </div>
+                        </div>
+                        <div class="course-detail-item">
+                            <i class="fas fa-bookmark"></i>
+                            <div>
+                                <div class="detail-label">الاسم المختصر:</div>
+                                <div class="detail-value">CompTIA Network+</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="course-desc">تأسيس شبكات احترافي يشرح بروتوكولات الإنترنت (TCP/IP, UDP, DNS, DHCP)، نماذج OSI السبعة، تقسيم الشبكات والعنونة IPv4 / IPv6، وأجهزة التوجيه والتبديل وطرق حمايتها.</p>
+                    <div class="course-actions">
+                        <div class="course-tags">
+                            <span class="course-tag">Network+</span>
+                            <span class="course-tag">سامح رمضان</span>
+                            <span class="course-tag">شبكات</span>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=RFK4Kc_aJYg&list=PLH-n8YK76vIiuIZoWvHL7AvtrDV7hR3He&pp=0gcJCZQGa94AFGB0" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                            <i class="fas fa-play-circle"></i> بدء دراسة الكورس الآن
+                        </a>
+                    </div>
+                </div>
+
+                <div class="course-card" data-course-id="basics-06">
+                    <div class="course-header">
+                        <div class="course-title-wrap">
+                            <span class="course-abbrev-badge">Cisco CCNA 200-301</span>
+                            <h3 class="course-title">دورة شبكات سيسكو Cisco CCNA 200-301</h3>
+                        </div>
+                        <span class="badge" style="background:rgba(139,92,246,0.15); color:var(--neon-purple); padding:6px 14px; border-radius:20px; font-size:0.82rem; border:1px solid rgba(139,92,246,0.3);">
+                            Cisco CCNA
+                        </span>
+                    </div>
+                    <div class="course-details-grid">
+                        <div class="course-detail-item">
+                            <i class="fas fa-chalkboard-user"></i>
+                            <div>
+                                <div class="detail-label">المدرب / المهندس:</div>
+                                <div class="detail-value">المهندس أحمد نظمي (Eng. Ahmed Nazmy)</div>
+                            </div>
+                        </div>
+                        <div class="course-detail-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <div class="detail-label">مدة ومستوى الكورس:</div>
+                                <div class="detail-value">أقوى كورس عربي لشهادة CCNA المعيارية</div>
+                            </div>
+                        </div>
+                        <div class="course-detail-item">
+                            <i class="fas fa-bookmark"></i>
+                            <div>
+                                <div class="detail-label">الاسم المختصر:</div>
+                                <div class="detail-value">Cisco CCNA 200-301</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="course-desc">الدورة المرجعية لشهادة CCNA، تشرح إعداد وتكوين أجهزة سيسكو (Routers & Switches)، مفاهيم الـ VLANs، التوجيه (Routing Protocols)، وتأمين بيئات الشبكات الحقيقية للشركات.</p>
+                    <div class="course-actions">
+                        <div class="course-tags">
+                            <span class="course-tag">CCNA</span>
+                            <span class="course-tag">سيسكو</span>
+                            <span class="course-tag">أحمد نظمي</span>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=J2xws7u7ZeM&list=PL77yNtB4-LjnN2FU3h1v5hIJOHZfW9ugq" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                            <i class="fas fa-play-circle"></i> بدء دراسة الكورس الآن
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- الخطوة 4: أساسيات الأمن السيبراني -->
+            <div class="courses-level-section">
+                <div class="section-level-badge">
+                    <i class="fas fa-lock"></i> الخطوة الرابعة: أساسيات الأمن السيبراني (Cybersecurity Basics)
+                </div>
+                <div class="course-card" data-course-id="basics-07">
+                    <div class="course-header">
+                        <div class="course-title-wrap">
+                            <span class="course-abbrev-badge">Cybersecurity Intro</span>
+                            <h3 class="course-title">مدخل شهادات ومفاهيم أمن المعلومات (Introduction to CompTIA Certifications)</h3>
+                        </div>
+                        <span class="badge" style="background:rgba(139,92,246,0.15); color:var(--neon-purple); padding:6px 14px; border-radius:20px; font-size:0.82rem; border:1px solid rgba(139,92,246,0.3);">
+                            Cyber Fundamentals
+                        </span>
+                    </div>
+                    <div class="course-details-grid">
+                        <div class="course-detail-item">
+                            <i class="fas fa-chalkboard-user"></i>
+                            <div>
+                                <div class="detail-label">المدرب / المهندس:</div>
+                                <div class="detail-value">المهندس سامح رمضان (Eng. Sameh Ramadan)</div>
+                            </div>
+                        </div>
+                        <div class="course-detail-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <div class="detail-label">مدة ومستوى الكورس:</div>
+                                <div class="detail-value">سلسلة توجيهية تأسيسية للطلاب والمبتدئين</div>
+                            </div>
+                        </div>
+                        <div class="course-detail-item">
+                            <i class="fas fa-bookmark"></i>
+                            <div>
+                                <div class="detail-label">الاسم المختصر:</div>
+                                <div class="detail-value">Cybersecurity Intro</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="course-desc">خريطة طريق واضحة ومبسطة لفهم مجالات أمن المعلومات والشهادات المهنية المعتمدة عالمياً، ومفاهيم السرية والنزاهة والتوفر (CIA Triad)، وأنواع التهديدات السيبرانية.</p>
+                    <div class="course-actions">
+                        <div class="course-tags">
+                            <span class="course-tag">CompTIA</span>
+                            <span class="course-tag">أمن معلومات</span>
+                            <span class="course-tag">سامح رمضان</span>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=zIpF33NCgrA&list=PLH-n8YK76vIiDdOMRB-ylvns-_8Zl1euV" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                            <i class="fas fa-play-circle"></i> بدء دراسة الكورس الآن
+                        </a>
+                    </div>
+                </div>
+
+                <div class="course-card" data-course-id="basics-08">
+                    <div class="course-header">
+                        <div class="course-title-wrap">
+                            <span class="course-abbrev-badge">CompTIA Security+</span>
+                            <h3 class="course-title">دورة شهادة CompTIA Security+ (SY0-601/SY0-701) الشاملة</h3>
+                        </div>
+                        <span class="badge" style="background:rgba(139,92,246,0.15); color:var(--neon-purple); padding:6px 14px; border-radius:20px; font-size:0.82rem; border:1px solid rgba(139,92,246,0.3);">
+                            Security+ SY0-601
+                        </span>
+                    </div>
+                    <div class="course-details-grid">
+                        <div class="course-detail-item">
+                            <i class="fas fa-chalkboard-user"></i>
+                            <div>
+                                <div class="detail-label">المدرب / المهندس:</div>
+                                <div class="detail-value">المهندس أحمد سلطان (أكاديمية نت رايدرز Netriders)</div>
+                            </div>
+                        </div>
+                        <div class="course-detail-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <div class="detail-label">مدة ومستوى الكورس:</div>
+                                <div class="detail-value">أشمل كورس عربي لشهادة Security+ العالمية</div>
+                            </div>
+                        </div>
+                        <div class="course-detail-item">
+                            <i class="fas fa-bookmark"></i>
+                            <div>
+                                <div class="detail-label">الاسم المختصر:</div>
+                                <div class="detail-value">CompTIA Security+</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="course-desc">الكورس المعتمد عالمياً كنقطة انطلاق لأي متخصص أمن سيبراني، يغطي التهديدات والهجمات، إدارة الهوية والوصول (IAM)، التشفير، وأمن الشبكات وإدارة المخاطر والامتثال الأمني.</p>
+                    <div class="course-actions">
+                        <div class="course-tags">
+                            <span class="course-tag">Security+</span>
+                            <span class="course-tag">أحمد سلطان</span>
+                            <span class="course-tag">نت رايدرز</span>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=dyKg_bQOXfU&list=PLky4bd7_03m8o1NB0j96OsxZs0KcKlgMO" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                            <i class="fas fa-play-circle"></i> بدء دراسة الكورس الآن
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-copy">
+                جميع الحقوق محفوظة &copy; 2027 منصة <strong>ArabSecurity</strong>
+            </div>
+            <div class="footer-designer">
+                تصميم وتطوير: <span class="dynamic-designer-name">Mostafa Ahmed</span>
+            </div>
+            <ul class="footer-links">
+                <li><a href="teams.html">المسارات</a></li>
+                <li><a href="tools.html">الأدوات</a></li>
+                <li><a href="about.html">حول المنصة</a></li>
+                <li><a href="support.html">الدعم الفني</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="js/admin-config.js"></script>
+    <script src="js/default-data.js"></script>
+    <script src="js/site-data.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
