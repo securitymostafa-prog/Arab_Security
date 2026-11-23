@@ -481,8 +481,18 @@ function initSecuritySettings() {
     const newPassInput = document.getElementById('adminNewPasswordInput');
     const saveBtn = document.getElementById('saveSecurityBtn');
 
-    const activeCreds = getActiveAdminCredentials();
-    if (usernameInput) usernameInput.value = activeCreds.username;
+    function refreshSecurityUI() {
+        const activeCreds = getActiveAdminCredentials();
+        if (usernameInput) usernameInput.value = activeCreds.username;
+        const displayUser = document.getElementById('adminDisplayUser');
+        if (displayUser) displayUser.textContent = activeCreds.username;
+        const sourceBadge = document.getElementById('adminCredsSourceBadge');
+        if (sourceBadge) {
+            sourceBadge.textContent = 'المصدر الحالي: ' + (activeCreds.source || 'الكود');
+        }
+    }
+
+    refreshSecurityUI();
 
     if (saveBtn) {
         saveBtn.addEventListener('click', () => {
@@ -500,7 +510,7 @@ function initSecuritySettings() {
             const isCurrentPassValid = validateAdminCredentials(latestCreds.username, currentPass) || 
                                        validateAdminCredentials(newUsername, currentPass) || 
                                        currentPass === latestCreds.password || 
-                                       currentPass === latestCreds.codePassword;
+                                       (ADMIN_CONFIG.password && currentPass === ADMIN_CONFIG.password.trim());
 
             if (!isCurrentPassValid) {
                 alert("كلمة المرور الحالية غير صحيحة!");
@@ -510,6 +520,7 @@ function initSecuritySettings() {
             saveAdminCredentials(newUsername, newPass);
             currentPassInput.value = '';
             newPassInput.value = '';
+            refreshSecurityUI();
             showToast("تم تغيير بيانات تسجيل دخول الأدمن بنجاح!");
         });
     }
