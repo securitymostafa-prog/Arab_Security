@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initGeneralSettings();
     initSecuritySettings();
     initBackupRestore();
+    initCodeSyncTab();
     initGitHubTab();
     initCloudTab();
 });
@@ -860,4 +861,65 @@ function initGitHubTab() {
         });
     }
 }
+
+/* ==================== 10. تبويب تحديث واستخراج الكود الأساسي ==================== */
+function initCodeSyncTab() {
+    const btnDownloadData = document.getElementById('btnDownloadDefaultData');
+    const btnCopyData = document.getElementById('btnCopyDefaultData');
+    const btnDownloadCreds = document.getElementById('btnDownloadAdminConfig');
+    const btnCopyCreds = document.getElementById('btnCopyAdminConfig');
+    const topDownloadBtn = document.getElementById('topDownloadCodeBtn');
+
+    function handleDownloadData() {
+        const data = getSiteData();
+        const content = generateDefaultDataJsContent(data);
+        triggerFileDownload('default-data.js', content);
+        showToast("تم تحميل ملف default-data.js المحدث بنجاح! ضعه في مجلد js/ بمشروعك.");
+    }
+
+    if (btnDownloadData) btnDownloadData.addEventListener('click', handleDownloadData);
+    if (topDownloadBtn) topDownloadBtn.addEventListener('click', handleDownloadData);
+
+    if (btnCopyData) {
+        btnCopyData.addEventListener('click', () => {
+            const data = getSiteData();
+            const content = generateDefaultDataJsContent(data);
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(content).then(() => {
+                    showToast("تم نسخ كود default-data.js كاملاً للحافظة! يمكنك لصقه في VS Code.");
+                }).catch(() => {
+                    showToast("تعذر النسخ التلقائي، يرجى استخدام زر التحميل.");
+                });
+            } else {
+                showToast("يرجى استخدام زر التحميل لتنزيل الملف مباشرة.");
+            }
+        });
+    }
+
+    if (btnDownloadCreds) {
+        btnDownloadCreds.addEventListener('click', () => {
+            const creds = getActiveAdminCredentials();
+            const content = generateAdminConfigJsContent(creds.username, creds.password);
+            triggerFileDownload('admin-config.js', content);
+            showToast("تم تحميل ملف admin-config.js المحدث بنجاح!");
+        });
+    }
+
+    if (btnCopyCreds) {
+        btnCopyCreds.addEventListener('click', () => {
+            const creds = getActiveAdminCredentials();
+            const content = generateAdminConfigJsContent(creds.username, creds.password);
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(content).then(() => {
+                    showToast("تم نسخ كود admin-config.js كاملاً للحافظة!");
+                }).catch(() => {
+                    showToast("تعذر النسخ التلقائي، يرجى استخدام زر التحميل.");
+                });
+            } else {
+                showToast("يرجى استخدام زر التحميل لتنزيل الملف مباشرة.");
+            }
+        });
+    }
+}
+
 

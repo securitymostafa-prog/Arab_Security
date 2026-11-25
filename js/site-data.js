@@ -10,36 +10,64 @@
 
 const STORAGE_KEY = 'arabsecurity_master_database';
 
+// حساب بصمة رقمية لمحتوى الكود في DEFAULT_SITE_DATA للتحقق الفوري من أي تعديل
+function computeDataHash(data) {
+    if (!data) return '';
+    try {
+        const payload = JSON.stringify({
+            c: (data.courses || []).map(x => (x.id || '') + (x.title || '') + (x.url || '')),
+            t: (data.tools || []).map(x => (x.id || '') + (x.name || '') + (x.url || '')),
+            s: data.settings || {},
+            u: data.lastUpdated || '',
+            v: data.version || ''
+        });
+        let hash = 0;
+        for (let i = 0; i < payload.length; i++) {
+            hash = ((hash << 5) - hash) + payload.charCodeAt(i);
+            hash |= 0;
+        }
+        return String(hash);
+    } catch (e) {
+        return '';
+    }
+}
+
 // جلب البيانات الكاملة من المتصفح أو تهيئتها من قاعدة البيانات الافتراضية
 function getSiteData() {
-    const rawData = localStorage.getItem(STORAGE_KEY);
     const defData = (typeof DEFAULT_SITE_DATA !== 'undefined') ? DEFAULT_SITE_DATA : null;
+    const currentCodeHash = computeDataHash(defData);
+    const lastCodeHash = localStorage.getItem('arabsec_last_data_hash');
 
+    // 1. إذا تم تعديل الكود في ملف default-data.js (في VS Code أو برفع ملف جديد للموقع):
+    // يتم فوراً وبشكل تلقائي اعتماد الكود ومسح أي تخزين قديم ليكون الكود هو صاحب الأولوية المطلقة!
+    if (defData && currentCodeHash && lastCodeHash !== currentCodeHash) {
+        console.log("🔄 تم رصد كود جديد في default-data.js! اعتماد الكود الأساسي فوراً لجميع الزوار...");
+        localStorage.setItem('arabsec_last_data_hash', currentCodeHash);
+        
+        const freshData = JSON.parse(JSON.stringify(defData));
+        // الحفاظ على إحصائيات الزيارات الحية إن وجدت
+        const oldRaw = localStorage.getItem(STORAGE_KEY);
+        if (oldRaw) {
+            try {
+                const old = JSON.parse(oldRaw);
+                if (old.statistics) freshData.statistics = old.statistics;
+            } catch (e) {}
+        }
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(freshData));
+        return freshData;
+    }
+
+    const rawData = localStorage.getItem(STORAGE_KEY);
     if (!rawData) {
         // تهيئة البيانات للمرة الأولى
         const initialData = JSON.parse(JSON.stringify(defData || {}));
+        if (currentCodeHash) localStorage.setItem('arabsec_last_data_hash', currentCodeHash);
         localStorage.setItem(STORAGE_KEY, JSON.stringify(initialData));
         return initialData;
     }
+
     try {
         const parsed = JSON.parse(rawData);
-
-        // التحقق الذكي من التحديثات: إذا كانت نسخة الكود أو الملف القادم من GitHub أحدث من التخزين المحلي للزائر
-        if (defData && defData.lastUpdated) {
-            const defTime = new Date(defData.lastUpdated).getTime();
-            const localTime = parsed.lastUpdated ? new Date(parsed.lastUpdated).getTime() : 0;
-
-            if (defTime > localTime) {
-                console.log("🔄 تم العثور على تحديثات جديدة منشورة للموقع! جاري تطبيقها...");
-                const mergedWithNew = Object.assign({}, defData);
-                // الحفاظ على إحصائيات الزائر الشخصية الحية
-                if (parsed.statistics) {
-                    mergedWithNew.statistics = parsed.statistics;
-                }
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(mergedWithNew));
-                return mergedWithNew;
-            }
-        }
 
         // حماية فائقة: التحقق من وجود الكورسات والأدوات وأنها ليست مصفوفات فارغة
         const hasValidCourses = parsed.courses && Array.isArray(parsed.courses) && parsed.courses.length > 0;
@@ -231,3 +259,120 @@ document.addEventListener('DOMContentLoaded', () => {
         recordPageVisit(currentSection);
     }
 });
+
+/* ==================== دوال توليد وتصدير ملفات الكود الأساسية ==================== */
+function generateDefaultDataJsContent(siteData) {
+    const dataToExport = JSON.parse(JSON.stringify(siteData || getSiteData()));
+    dataToExport.lastUpdated = new Date().toISOString();
+    return `/**
+ * ==============================================================================
+ * قاعدة البيانات الرسمية والأساسية لمنصة ArabSecurity (Default Database)
+ * ==============================================================================
+ * تم التحديث من لوحة الأدمن بتاريخ: ${new Date().toLocaleString('ar-EG')}
+ * يحتوي هذا الملف على الكورسات والأدوات والإعدادات الرسمية التي يقرأها الموقع المنشور.
+ * ==============================================================================
+ */
+
+const DEFAULT_SITE_DATA = ${JSON.stringify(dataToExport, null, 4)};
+`;
+}
+
+function generateAdminConfigJsContent(username, password) {
+    const user = username || (typeof getActiveAdminCredentials === 'function' ? getActiveAdminCredentials().username : 'mostafa');
+    const pass = password || (typeof getActiveAdminCredentials === 'function' ? getActiveAdminCredentials().password : '01100711646');
+    
+    return `/**
+ * ==============================================================================
+ * ملف إعدادات وبيانات تسجيل الدخول للوحة تحكم الأدمن (ArabSecurity Admin Config)
+ * ==============================================================================
+ * تم التحديث من لوحة الأدمن بتاريخ: ${new Date().toLocaleString('ar-EG')}
+ * ==============================================================================
+ */
+
+const ADMIN_CONFIG = {
+    username: ${JSON.stringify(user)},
+    password: ${JSON.stringify(pass)},
+    adminRoute: "/admin",
+    defaultYear: "2027",
+    designerName: "Mostafa Ahmed",
+    welcomeMessage: "مرحباً بك في لوحة تحكم منصة ArabSecurity"
+};
+
+function getActiveAdminCredentials() {
+    const codeUser = (ADMIN_CONFIG.username || '').trim();
+    const codePass = (ADMIN_CONFIG.password || '').trim();
+    const currentCodeHash = \`\${codeUser}:::\${codePass}\`;
+    const lastCodeHash = localStorage.getItem('arabsec_last_code_hash');
+
+    if (lastCodeHash !== currentCodeHash) {
+        localStorage.setItem('arabsec_last_code_hash', currentCodeHash);
+        localStorage.removeItem('arabsecurity_admin_creds');
+        return { username: codeUser, password: codePass, source: 'الكود (admin-config.js)' };
+    }
+
+    const customCreds = localStorage.getItem('arabsecurity_admin_creds');
+    if (customCreds) {
+        try {
+            const parsed = JSON.parse(customCreds);
+            if (parsed.username && parsed.password) {
+                return { username: parsed.username.trim(), password: parsed.password.trim(), source: 'لوحة التحكم بالموقع' };
+            }
+        } catch (e) {}
+    }
+
+    return { username: codeUser, password: codePass, source: 'الكود (admin-config.js)' };
+}
+
+function validateAdminCredentials(inputUser, inputPass) {
+    const user = (inputUser || '').trim();
+    const pass = (inputPass || '').trim();
+    const active = getActiveAdminCredentials();
+    const codeUser = (ADMIN_CONFIG.username || '').trim();
+    const codePass = (ADMIN_CONFIG.password || '').trim();
+
+    if (user === active.username && pass === active.password) return true;
+    if (user === codeUser && pass === codePass) return true;
+
+    const customCreds = localStorage.getItem('arabsecurity_admin_creds');
+    if (customCreds) {
+        try {
+            const parsed = JSON.parse(customCreds);
+            if (user === parsed.username.trim() && pass === parsed.password.trim()) return true;
+        } catch (e) {}
+    }
+    return false;
+}
+
+function saveAdminCredentials(newUsername, newPassword) {
+    const codeUser = (ADMIN_CONFIG.username || '').trim();
+    const codePass = (ADMIN_CONFIG.password || '').trim();
+    const currentCodeHash = \`\${codeUser}:::\${codePass}\`;
+    localStorage.setItem('arabsec_last_code_hash', currentCodeHash);
+
+    const creds = {
+        username: newUsername.trim(),
+        password: newPassword.trim(),
+        updatedAt: new Date().toISOString(),
+        source: 'لوحة التحكم بالموقع'
+    };
+    localStorage.setItem('arabsecurity_admin_creds', JSON.stringify(creds));
+    return true;
+}
+`;
+}
+
+// دالة تحميل ملف إلى جهاز المستخدم بضغطة زر واحدة
+function triggerFileDownload(filename, textContent) {
+    const blob = new Blob([textContent], { type: 'application/javascript;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => {
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }, 150);
+}
+
