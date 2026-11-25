@@ -53,14 +53,6 @@
                         <i class="fas fa-key"></i>
                         <span>أمان وبيانات تسجيل الدخول</span>
                     </li>
-                    <li class="admin-nav-item" data-tab="tabCodeSync">
-                        <i class="fas fa-file-code"></i>
-                        <span>تحديث واستخراج الكود الأساسي</span>
-                    </li>
-                    <li class="admin-nav-item" data-tab="tabGitHub">
-                        <i class="fab fa-github"></i>
-                        <span>نشر أونلاين على GitHub Pages</span>
-                    </li>
                     <li class="admin-nav-item" data-tab="tabBackup">
                         <i class="fas fa-database"></i>
                         <span>النسخ الاحتياطي واستعادة المصنع</span>
@@ -90,15 +82,7 @@
                     <h2>لوحة التحكم والإدارة</h2>
                     <p>إدارة وتخصيص كافة صفحات ومحتويات وتفاصيل منصة ArabSecurity</p>
                 </div>
-                <div style="display:flex; align-items:center; gap:12px;">
-                    <button class="btn btn-outline" id="topDownloadCodeBtn" style="border-color:rgba(139,92,246,0.5); color:#c084fc; padding:8px 16px; font-size:0.85rem; display:flex; align-items:center; gap:8px;">
-                        <i class="fas fa-download"></i>
-                        <span>💾 استخراج كود default-data.js</span>
-                    </button>
-                    <button class="btn btn-primary" id="topQuickPublishBtn" style="background:linear-gradient(135deg, #8b5cf6, #ec4899); border:none; box-shadow:0 0 15px rgba(139,92,246,0.35); padding:8px 18px; font-size:0.88rem; display:flex; align-items:center; gap:8px;">
-                        <i class="fab fa-github"></i>
-                        <span>🚀 نشر أونلاين على GitHub</span>
-                    </button>
+                <div style="display:flex; align-items:center; gap:14px;">
                     <div style="background:rgba(139,92,246,0.15); border:1px solid var(--border-color); padding:8px 16px; border-radius:30px; font-size:0.85rem; color:var(--neon-purple); display:flex; align-items:center; gap:8px;">
                         <i class="fas fa-user-shield"></i>
                         <span>المشرف: <strong id="adminDisplayUser">admin</strong></span>
@@ -430,168 +414,7 @@
                 </div>
             </div>
 
-            <!-- ==================== تبويب استخراج وتحديث الكود الأساسي ==================== -->
-            <div class="admin-tab-pane" id="tabCodeSync">
-                <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:18px; padding:32px; max-width:850px;">
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:12px;">
-                        <h3 style="color:#ffffff; font-family:var(--font-heading); font-size:1.4rem;">
-                            <i class="fas fa-file-code" style="color:var(--neon-purple); margin-left:8px;"></i> تحديث واستخراج ملفات الكود الأساسية للموقع
-                        </h3>
-                        <span class="badge" style="background:rgba(34,197,94,0.15); color:#4ade80; padding:6px 14px; border-radius:20px; font-size:0.85rem; border:1px solid rgba(34,197,94,0.3);">
-                            <i class="fas fa-check-double"></i> الكود هو المصدر الأساسي دائماً
-                        </span>
-                    </div>
-
-                    <p style="color:var(--text-secondary); font-size:0.95rem; line-height:1.8; margin-bottom:24px;">
-                        كل تعديل تقوم به في لوحة الأدمن (إضافة كورس، تعديل أداة، تغيير كلمة سر أو نصوص) يتم تجهيزه تلقائياً ليكون في <strong>ملفات الكود البرمجي الأساسية</strong> للمنصة، حتى يقرأ الموقع المنشور على GitHub Pages من الكود مباشرة ويظهر لكل الزوار في العالم بنسبة 100%!
-                    </p>
-
-                    <!-- البطاقة الأولى: ملف قاعدة البيانات js/default-data.js -->
-                    <div style="background:rgba(10,6,18,0.85); border:1px solid rgba(139,92,246,0.3); border-radius:14px; padding:22px; margin-bottom:24px;">
-                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:10px;">
-                            <div>
-                                <h4 style="color:#ffffff; font-family:var(--font-heading); font-size:1.1rem; margin:0;">
-                                    <i class="fas fa-database" style="color:var(--neon-purple); margin-left:6px;"></i> ملف قاعدة بيانات الموقع: <code>js/default-data.js</code>
-                                </h4>
-                                <p style="color:var(--text-muted); font-size:0.85rem; margin:4px 0 0 0;">
-                                    يحتوي على كافة الكورسات، الأدوات، إعدادات المظهر، والنصوص بعد آخر تعديل قمت به في لوحة الأدمن.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:16px;">
-                            <button class="btn btn-primary" id="btnDownloadDefaultData" style="background:linear-gradient(135deg, #8b5cf6, #7c3aed); border:none; padding:10px 20px;">
-                                <i class="fas fa-download"></i> تحميل ملف default-data.js جاهزاً
-                            </button>
-                            <button class="btn btn-outline" id="btnCopyDefaultData">
-                                <i class="fas fa-copy"></i> نسخ كود الملف بالكامل (لـ VS Code)
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- البطاقة الثانية: ملف بيانات الأدمن js/admin-config.js -->
-                    <div style="background:rgba(10,6,18,0.85); border:1px solid rgba(139,92,246,0.3); border-radius:14px; padding:22px; margin-bottom:24px;">
-                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:10px;">
-                            <div>
-                                <h4 style="color:#ffffff; font-family:var(--font-heading); font-size:1.1rem; margin:0;">
-                                    <i class="fas fa-key" style="color:var(--neon-purple); margin-left:6px;"></i> ملف إعدادات الأدمن: <code>js/admin-config.js</code>
-                                </h4>
-                                <p style="color:var(--text-muted); font-size:0.85rem; margin:4px 0 0 0;">
-                                    يحتوي على اسم المستخدم وكلمة المرور الحالية للأدمن لتعمل في الكود وعلى الموقع في نفس الوقت.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:16px;">
-                            <button class="btn btn-primary" id="btnDownloadAdminConfig" style="background:linear-gradient(135deg, #8b5cf6, #7c3aed); border:none; padding:10px 20px;">
-                                <i class="fas fa-download"></i> تحميل ملف admin-config.js جاهزاً
-                            </button>
-                            <button class="btn btn-outline" id="btnCopyAdminConfig">
-                                <i class="fas fa-copy"></i> نسخ كود الملف بالكامل (لـ VS Code)
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- خطوات التطبيق البسيطة -->
-                    <div style="background:rgba(139,92,246,0.08); border:1px dashed rgba(139,92,246,0.4); border-radius:12px; padding:18px;">
-                        <h5 style="color:#ffffff; font-size:0.95rem; margin-bottom:8px;">
-                            <i class="fas fa-lightbulb" style="color:#facc15; margin-left:6px;"></i> كيفية تحديث الموقع بعد التعديل في خطوتين:
-                        </h5>
-                        <ul style="color:var(--text-muted); font-size:0.88rem; padding-right:20px; line-height:1.9; margin:0;">
-                            <li><strong>الخيار الأول (بسيط ومباشر)</strong>: اضغط على <strong>"تحميل ملف default-data.js"</strong> وانقله إلى مجلد <code>js</code> داخل مشروعك على جهازك وارفع المشروع على GitHub، وسيقرأ منه الموقع فوراً.</li>
-                            <li><strong>الخيار الثاني (تلقائي بنقرة واحدة)</strong>: من تبويب <strong>"نشر أونلاين على GitHub Pages"</strong> اضغط <strong>"نشر التعديلات أونلاين"</strong> وسيقوم بتحديث الملفين في مستودع GitHub تلقائياً بدون تحميل أي ملفات!</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ==================== 8. تبويب النشر المباشر على GitHub Pages ==================== -->
-            <div class="admin-tab-pane" id="tabGitHub">
-                <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:18px; padding:32px; max-width:850px;">
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:12px;">
-                        <h3 style="color:#ffffff; font-family:var(--font-heading); font-size:1.4rem;">
-                            <i class="fab fa-github" style="color:var(--neon-purple); margin-left:8px;"></i> النشر والتحديث المباشر على GitHub Pages
-                        </h3>
-                        <div id="ghStatusBadge" style="background:rgba(234,179,8,0.15); color:#facc15; padding:6px 14px; border-radius:20px; font-size:0.85rem; border:1px solid rgba(234,179,8,0.3);">
-                            <i class="fas fa-circle-dot"></i> غير متصل بحساب GitHub بعد
-                        </div>
-                    </div>
-
-                    <p style="color:var(--text-secondary); font-size:0.95rem; line-height:1.8; margin-bottom:20px;">
-                        يتيح لك هذا القسم ربط لوحة الأدمن بمستودعك على GitHub مباشرة. بمجرد إدخال البيانات لمرة واحدة فقط، يمكنك تعديل أي كورس، أداة، أو كلمة سر من داخل الموقع والضغط على زر <strong>"نشر التعديلات أونلاين"</strong>، ليتم تحديث الموقع فوراً على <strong>GitHub Pages</strong> وتظهر التعديلات لكافة الزوار في العالم بدون لمس أي كود!
-                    </p>
-
-                    <!-- بطاقة شرح استخراج التوكن في 30 ثانية -->
-                    <div style="background:rgba(10,6,18,0.85); border:1px solid rgba(139,92,246,0.3); border-radius:14px; padding:20px; margin-bottom:26px;">
-                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
-                            <h4 style="color:#ffffff; font-family:var(--font-heading); font-size:1.05rem; margin:0;">
-                                <i class="fas fa-key" style="color:var(--neon-purple); margin-left:6px;"></i> كيفية إنشاء رمز الوصول (GitHub Token) في 30 ثانية مجاناً:
-                            </h4>
-                            <a href="https://github.com/settings/tokens/new" target="_blank" class="btn btn-outline btn-sm" style="font-size:0.8rem; padding:6px 14px;">
-                                <i class="fas fa-arrow-up-right-from-square"></i> فتح صفحة إنشاء التوكن في GitHub
-                            </a>
-                        </div>
-                        <ol style="color:var(--text-muted); padding-right:20px; line-height:1.9; font-size:0.9rem; margin-bottom:0;">
-                            <li>افتح الرابط أعلاه (سجل دخولك بحساب GitHub إن طُلب منك).</li>
-                            <li>في خانة <strong>Note</strong> اكتب: <code>arabsecurity</code> واضبط Expiration على ما تفضله (مثلاً No expiration أو 90 days).</li>
-                            <li>ضع علامة صح <strong>(&#10003;)</strong> أمام خيار <strong>repo</strong> (Full control of private repositories).</li>
-                            <li>انزل لأسفل الصفحة واضغط الزر الأخضر <strong>Generate token</strong>.</li>
-                            <li>انسخ الرمز الذي يظهر لك (يبدأ عادة بـ <code>ghp_...</code>) وضعه في خانة <strong>رمز الوصول (Token)</strong> أدناه ثم اضغط حفظ!</li>
-                        </ol>
-                    </div>
-
-                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
-                        <div class="form-group">
-                            <label class="form-label"><i class="fas fa-user" style="color:var(--neon-purple); margin-left:6px;"></i> اسم حسابك على GitHub (Username)</label>
-                            <input type="text" id="ghOwnerInput" class="form-control" placeholder="مثال: mostafa" style="direction:ltr;">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label"><i class="fas fa-folder-tree" style="color:var(--neon-purple); margin-left:6px;"></i> اسم المستودع (Repository Name)</label>
-                            <input type="text" id="ghRepoInput" class="form-control" placeholder="مثال: arabsecurity" style="direction:ltr;">
-                        </div>
-                    </div>
-
-                    <div style="display:grid; grid-template-columns:2fr 1fr; gap:16px;">
-                        <div class="form-group">
-                            <label class="form-label"><i class="fas fa-lock" style="color:var(--neon-purple); margin-left:6px;"></i> رمز الوصول الشخصي (GitHub Personal Access Token)</label>
-                            <div style="position:relative;">
-                                <input type="password" id="ghTokenInput" class="form-control" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" style="direction:ltr; padding-left:42px;">
-                                <button type="button" id="toggleGhTokenBtn" style="position:absolute; left:12px; top:50%; transform:translateY(-50%); background:none; border:none; color:var(--text-muted); cursor:pointer;">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label"><i class="fas fa-code-branch" style="color:var(--neon-purple); margin-left:6px;"></i> اسم الفرع (Branch)</label>
-                            <input type="text" id="ghBranchInput" class="form-control" value="main" style="direction:ltr;">
-                        </div>
-                    </div>
-
-                    <!-- أزرار الإجراءات والتحكم -->
-                    <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:24px;">
-                        <button class="btn btn-outline" id="saveAndTestGhBtn">
-                            <i class="fas fa-plug-circle-check"></i> حفظ واختبار الاتصال بـ GitHub
-                        </button>
-                        <button class="btn btn-primary" id="publishAllGhBtn" style="background:linear-gradient(135deg, #8b5cf6, #ec4899); border:none; box-shadow:0 0 15px rgba(139,92,246,0.35);">
-                            <i class="fab fa-github"></i> 🚀 نشر كافة التعديلات على GitHub Pages أونلاين
-                        </button>
-                        <button class="btn btn-outline" id="publishCredsGhBtn" style="font-size:0.85rem;">
-                            <i class="fas fa-user-lock"></i> تحديث كلمة السر على GitHub أونلاين
-                        </button>
-                    </div>
-
-                    <!-- شاشة متابعة حالة النشر والعمليات -->
-                    <div id="ghLogOutputBox" style="display:none; margin-top:22px; background:rgba(0,0,0,0.6); border:1px solid rgba(139,92,246,0.3); border-radius:12px; padding:16px; font-family:monospace; font-size:0.88rem; line-height:1.7;">
-                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:6px;">
-                            <span style="color:var(--neon-purple);"><i class="fas fa-terminal"></i> سجل العمليات المباشر (Publish Status):</span>
-                            <span id="ghLogSpinner" style="display:none;"><i class="fas fa-spinner fa-spin" style="color:#a855f7;"></i></span>
-                        </div>
-                        <div id="ghLogText" style="color:var(--text-secondary); white-space:pre-wrap;"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ==================== 9. تبويب الربط السحابي مع Firebase ==================== -->
+            <!-- ==================== 8. تبويب الربط السحابي مع Firebase ==================== -->
             <div class="admin-tab-pane" id="tabCloud">
                 <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:18px; padding:32px; max-width:800px;">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:12px;">
@@ -798,7 +621,6 @@
     <script src="js/admin-config.js"></script>
     <script src="js/default-data.js"></script>
     <script src="js/site-data.js"></script>
-    <script src="js/github-sync.js"></script>
     <script src="js/admin.js"></script>
     <script>
         // إظهار اسم الأدمن النشط
