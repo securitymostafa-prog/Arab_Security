@@ -23,6 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initGeneralSettings();
     initSecuritySettings();
     initBackupRestore();
+    initGitHubTab();
+    initCloudTab();
 });
 
 /* ==================== التنقل بين تبويبات لوحة التحكم ==================== */
@@ -554,3 +556,308 @@ function initBackupRestore() {
         });
     }
 }
+
+/* ==================== 8. تبويب الربط السحابي مع Firebase ==================== */
+function initCloudTab() {
+    const pasteInput = document.getElementById('firebaseConfigPasteInput');
+    const parseBtn = document.getElementById('autoParseFirebaseConfigBtn');
+    const saveBtn = document.getElementById('saveFirebaseConfigBtn');
+    const syncBtn = document.getElementById('syncInitialDataToCloudBtn');
+    const badge = document.getElementById('firebaseConnectionBadge');
+
+    const apiKeyInput = document.getElementById('fbApiKey');
+    const projectIdInput = document.getElementById('fbProjectId');
+    const authDomainInput = document.getElementById('fbAuthDomain');
+    const appIdInput = document.getElementById('fbAppId');
+
+    function updateBadgeStatus() {
+        if (!badge) return;
+        if (typeof isFirebaseEnabled === 'function' && isFirebaseEnabled()) {
+            badge.style.background = 'rgba(34, 197, 94, 0.15)';
+            badge.style.color = '#4ade80';
+            badge.style.borderColor = 'rgba(34, 197, 94, 0.4)';
+            badge.innerHTML = '<i class="fas fa-circle-check"></i> متصل بالسحابة أونلاين 🟢 (أي تعديل يظهر للجميع فوراً)';
+        } else {
+            badge.style.background = 'rgba(234, 179, 8, 0.15)';
+            badge.style.color = '#facc15';
+            badge.style.borderColor = 'rgba(234, 179, 8, 0.3)';
+            badge.innerHTML = '<i class="fas fa-circle-dot"></i> يعمل محلياً (غير مربوط بالسحابة بعد) 🟡';
+        }
+    }
+
+    // تعبئة الحقول إذا كانت الإعدادات موجودة مسبقاً
+    if (typeof FIREBASE_CONFIG !== 'undefined') {
+        if (apiKeyInput) apiKeyInput.value = FIREBASE_CONFIG.apiKey || '';
+        if (projectIdInput) projectIdInput.value = FIREBASE_CONFIG.projectId || '';
+        if (authDomainInput) authDomainInput.value = FIREBASE_CONFIG.authDomain || '';
+        if (appIdInput) appIdInput.value = FIREBASE_CONFIG.appId || '';
+    }
+    updateBadgeStatus();
+
+    // الاستخراج التلقائي من الكود المنسوخ
+    if (parseBtn && pasteInput) {
+        parseBtn.addEventListener('click', () => {
+            const raw = pasteInput.value;
+            const apiKeyMatch = raw.match(/apiKey:\s*["']([^"']+)["']/);
+            const projIdMatch = raw.match(/projectId:\s*["']([^"']+)["']/);
+            const authDomainMatch = raw.match(/authDomain:\s*["']([^"']+)["']/);
+            const appIdMatch = raw.match(/appId:\s*["']([^"']+)["']/);
+
+            if (apiKeyMatch && apiKeyInput) apiKeyInput.value = apiKeyMatch[1];
+            if (projIdMatch && projectIdInput) projectIdInput.value = projIdMatch[1];
+            if (authDomainMatch && authDomainInput) authDomainInput.value = authDomainMatch[1];
+            if (appIdMatch && appIdInput) appIdInput.value = appIdMatch[1];
+
+            if (apiKeyMatch || projIdMatch) {
+                showToast("تم استخراج بيانات Firebase بنجاح من النص المنسوخ!");
+            } else {
+                alert("لم يتم العثور على قيم صالحة، يرجى نسخ كود firebaseConfig كاملاً من جوجل.");
+            }
+        });
+    }
+
+    // حفظ وتفعيل الربط السحابي
+    if (saveBtn) {
+        saveBtn.addEventListener('click', () => {
+            const config = {
+                apiKey: apiKeyInput ? apiKeyInput.value.trim() : '',
+                projectId: projectIdInput ? projectIdInput.value.trim() : '',
+                authDomain: authDomainInput ? authDomainInput.value.trim() : '',
+                appId: appIdInput ? appIdInput.value.trim() : '',
+                storageBucket: `${projectIdInput.value.trim()}.appspot.com`,
+                messagingSenderId: ""
+            };
+
+            if (!config.apiKey || !config.projectId) {
+                alert("يرجى إدخال apiKey و projectId على الأقل لتفعيل الاتصال السحابي.");
+                return;
+            }
+
+            const success = saveFirebaseConfig(config);
+            updateBadgeStatus();
+            if (success) {
+                showToast("تم تفعيل الاتصال السحابي بـ Firebase بنجاح! 🟢");
+            } else {
+                showToast("تم حفظ الإعدادات، يرجى التأكد من صحة المفاتيح.");
+            }
+        });
+    }
+
+    // رفع البيانات الحالية إلى السحابة فوراً
+    if (syncBtn) {
+        syncBtn.addEventListener('click', () => {
+            if (!isFirebaseEnabled()) {
+                alert("يرجى حفظ وتفعيل بيانات الربط السحابي أولاً.");
+                return;
+            }
+            const data = getSiteData();
+            const db = initFirebase();
+            syncBtn.disabled = true;
+            syncBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الرفع...';
+
+            db.collection("arabsecurity").doc("master_data").set(data)
+                .then(() => {
+                    showToast("تم رفع ونشر جميع بيانات الموقع إلى السحابة بنجاح! الآن أي زائر في العالم سيرى الموقع متحدثاً.");
+                })
+                .catch(err => {
+                    alert("خطأ أثناء الرفع: " + err.message + "\nتأكد من تفعيل قواعد Firestore في وضع Test Mode.");
+                })
+                .finally(() => {
+                    syncBtn.disabled = false;
+                    syncBtn.innerHTML = '<i class="fas fa-cloud-arrow-up"></i> رفع البيانات الحالية إلى السحابة فوراً';
+                });
+        });
+    }
+}
+
+/* ==================== 9. تبويب النشر المباشر على GitHub Pages ==================== */
+function initGitHubTab() {
+    const ownerInput = document.getElementById('ghOwnerInput');
+    const repoInput = document.getElementById('ghRepoInput');
+    const tokenInput = document.getElementById('ghTokenInput');
+    const branchInput = document.getElementById('ghBranchInput');
+    const toggleTokenBtn = document.getElementById('toggleGhTokenBtn');
+    const saveAndTestBtn = document.getElementById('saveAndTestGhBtn');
+    const publishAllBtn = document.getElementById('publishAllGhBtn');
+    const publishCredsBtn = document.getElementById('publishCredsGhBtn');
+    const topQuickPublishBtn = document.getElementById('topQuickPublishBtn');
+    const badge = document.getElementById('ghStatusBadge');
+    const logBox = document.getElementById('ghLogOutputBox');
+    const logText = document.getElementById('ghLogText');
+    const logSpinner = document.getElementById('ghLogSpinner');
+
+    // تحميل الإعدادات المحفوظة مسبقاً
+    if (typeof getGitHubConfig === 'function') {
+        const cfg = getGitHubConfig();
+        if (ownerInput) ownerInput.value = cfg.owner || '';
+        if (repoInput) repoInput.value = cfg.repo || '';
+        if (tokenInput) tokenInput.value = cfg.token || '';
+        if (branchInput) branchInput.value = cfg.branch || 'main';
+    }
+
+    function updateBadgeStatus() {
+        if (!badge) return;
+        if (typeof isGitHubConfigured === 'function' && isGitHubConfigured()) {
+            badge.style.background = 'rgba(34, 197, 94, 0.15)';
+            badge.style.color = '#4ade80';
+            badge.style.borderColor = 'rgba(34, 197, 94, 0.4)';
+            badge.innerHTML = '<i class="fas fa-circle-check"></i> متصل بـ GitHub أونلاين 🟢 (جاهز للنشر)';
+        } else {
+            badge.style.background = 'rgba(234, 179, 8, 0.15)';
+            badge.style.color = '#facc15';
+            badge.style.borderColor = 'rgba(234, 179, 8, 0.3)';
+            badge.innerHTML = '<i class="fas fa-circle-dot"></i> غير متصل بحساب GitHub بعد';
+        }
+    }
+
+    updateBadgeStatus();
+
+    // إظهار / إخفاء التوكن
+    if (toggleTokenBtn && tokenInput) {
+        toggleTokenBtn.addEventListener('click', () => {
+            if (tokenInput.type === 'password') {
+                tokenInput.type = 'text';
+                toggleTokenBtn.innerHTML = '<i class="fas fa-eye-slash"></i>';
+            } else {
+                tokenInput.type = 'password';
+                toggleTokenBtn.innerHTML = '<i class="fas fa-eye"></i>';
+            }
+        });
+    }
+
+    function log(message) {
+        if (!logBox || !logText) return;
+        logBox.style.display = 'block';
+        const timestamp = new Date().toLocaleTimeString('ar-EG');
+        logText.textContent += `[${timestamp}] ${message}\n`;
+        logBox.scrollTop = logBox.scrollHeight;
+    }
+
+    function clearLog() {
+        if (!logBox || !logText) return;
+        logBox.style.display = 'block';
+        logText.textContent = '';
+    }
+
+    // حفظ واختبار الاتصال بـ GitHub
+    if (saveAndTestBtn) {
+        saveAndTestBtn.addEventListener('click', async () => {
+            const owner = ownerInput ? ownerInput.value.trim() : '';
+            const repo = repoInput ? repoInput.value.trim() : '';
+            const token = tokenInput ? tokenInput.value.trim() : '';
+            const branch = branchInput ? branchInput.value.trim() || 'main' : 'main';
+
+            if (!owner || !repo || !token) {
+                alert("يرجى إدخال اسم المستخدم واسم المستودع ورمز الوصول (Token) كاملاً.");
+                return;
+            }
+
+            saveGitHubConfig(owner, repo, token, branch);
+            clearLog();
+            log(`جاري اختبار الاتصال بمستودع GitHub (${owner}/${repo})...`);
+            if (logSpinner) logSpinner.style.display = 'inline-block';
+            saveAndTestBtn.disabled = true;
+
+            try {
+                const repoData = await testGitHubConnection();
+                updateBadgeStatus();
+                log(`✓ تم الاتصال بنجاح بمستودع (${repoData.full_name})!`);
+                log(`✓ المستودع صالح والاتصال نشط وجاهز لنشر التعديلات.`);
+                showToast("تم الاتصال بمستودع GitHub بنجاح! 🟢");
+            } catch (err) {
+                log(`❌ فشل الاتصال: ${err.message}`);
+                alert("فشل الاتصال بـ GitHub:\n" + err.message);
+            } finally {
+                if (logSpinner) logSpinner.style.display = 'none';
+                saveAndTestBtn.disabled = false;
+            }
+        });
+    }
+
+    // دالة تنفيذ النشر الشامل
+    async function executePublishAll(callerBtn) {
+        if (typeof isGitHubConfigured !== 'function' || !isGitHubConfigured()) {
+            alert("يرجى ضبط بيانات الاتصال بـ GitHub أولاً في تبويب 'نشر أونلاين على GitHub Pages'.");
+            const ghNav = document.querySelector('.admin-nav-item[data-tab="tabGitHub"]');
+            if (ghNav) ghNav.click();
+            return;
+        }
+
+        const btn = callerBtn || publishAllBtn;
+        if (btn) btn.disabled = true;
+        clearLog();
+        if (logSpinner) logSpinner.style.display = 'inline-block';
+
+        const cfg = getGitHubConfig();
+        log(`[1/3] بدء نشر التعديلات إلى مستودع (${cfg.owner}/${cfg.repo}) على فرع (${cfg.branch})...`);
+
+        try {
+            const siteData = getSiteData();
+            log(`[2/3] جاري تحديث وحفظ قاعدة البيانات (js/default-data.js) عبر GitHub API...`);
+            await publishToGitHubPages(siteData);
+            log(`✓ تم تحديث قاعدة البيانات بنجاح في GitHub!`);
+
+            // تحديث بيانات تسجيل الدخول إن وجدت
+            const creds = getActiveAdminCredentials();
+            if (creds && creds.username && creds.password) {
+                log(`[3/3] جاري تحديث ملف بيانات الدخول والأدمن (js/admin-config.js)...`);
+                try {
+                    await publishCredentialsToGitHub(creds.username, creds.password);
+                    log(`✓ تم تحديث بيانات دخول الأدمن بنجاح في GitHub!`);
+                } catch (e) {
+                    log(`ملاحظة: تعذر تحديث بيانات الدخول (${e.message})`);
+                }
+            }
+
+            log(`=======================================================`);
+            log(`🎉 اكتملت عملية النشر بنجاح على GitHub Pages!`);
+            log(`⏱️ يقوم GitHub Pages الآن بالبناء التلقائي، وستظهر التعديلات لكافة الزوار في العالم خلال 30 إلى 60 ثانية.`);
+            showToast("🎉 تم نشر كافة التعديلات على الموقع أونلاين بنجاح!");
+        } catch (err) {
+            log(`❌ خطأ أثناء النشر: ${err.message}`);
+            alert("خطأ أثناء النشر على GitHub:\n" + err.message);
+        } finally {
+            if (logSpinner) logSpinner.style.display = 'none';
+            if (btn) btn.disabled = false;
+        }
+    }
+
+    // زر النشر الشامل داخل التبويب
+    if (publishAllBtn) {
+        publishAllBtn.addEventListener('click', () => executePublishAll(publishAllBtn));
+    }
+
+    // زر النشر السريع في الشريط العلوي (Top Bar)
+    if (topQuickPublishBtn) {
+        topQuickPublishBtn.addEventListener('click', () => executePublishAll(topQuickPublishBtn));
+    }
+
+    // نشر بيانات الدخول فقط
+    if (publishCredsBtn) {
+        publishCredsBtn.addEventListener('click', async () => {
+            if (typeof isGitHubConfigured !== 'function' || !isGitHubConfigured()) {
+                alert("يرجى ضبط بيانات الاتصال بـ GitHub أولاً.");
+                return;
+            }
+
+            const creds = getActiveAdminCredentials();
+            publishCredsBtn.disabled = true;
+            clearLog();
+            if (logSpinner) logSpinner.style.display = 'inline-block';
+            log(`جاري تحديث بيانات الدخول (اليوزرنيم والباسورد) على GitHub...`);
+
+            try {
+                await publishCredentialsToGitHub(creds.username, creds.password);
+                log(`✓ تم حفظ وتحديث ملف js/admin-config.js على GitHub بنجاح!`);
+                showToast("تم تحديث كلمة المرور واسم المستخدم في GitHub أونلاين بنجاح!");
+            } catch (err) {
+                log(`❌ خطأ أثناء الحفظ: ${err.message}`);
+                alert("خطأ أثناء تحديث بيانات الدخول:\n" + err.message);
+            } finally {
+                if (logSpinner) logSpinner.style.display = 'none';
+                publishCredsBtn.disabled = false;
+            }
+        });
+    }
+}
+

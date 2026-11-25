@@ -13,24 +13,44 @@ const STORAGE_KEY = 'arabsecurity_master_database';
 // جلب البيانات الكاملة من المتصفح أو تهيئتها من قاعدة البيانات الافتراضية
 function getSiteData() {
     const rawData = localStorage.getItem(STORAGE_KEY);
+    const defData = (typeof DEFAULT_SITE_DATA !== 'undefined') ? DEFAULT_SITE_DATA : null;
+
     if (!rawData) {
         // تهيئة البيانات للمرة الأولى
-        const initialData = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA));
+        const initialData = JSON.parse(JSON.stringify(defData || {}));
         localStorage.setItem(STORAGE_KEY, JSON.stringify(initialData));
         return initialData;
     }
     try {
         const parsed = JSON.parse(rawData);
+
+        // التحقق الذكي من التحديثات: إذا كانت نسخة الكود أو الملف القادم من GitHub أحدث من التخزين المحلي للزائر
+        if (defData && defData.lastUpdated) {
+            const defTime = new Date(defData.lastUpdated).getTime();
+            const localTime = parsed.lastUpdated ? new Date(parsed.lastUpdated).getTime() : 0;
+
+            if (defTime > localTime) {
+                console.log("🔄 تم العثور على تحديثات جديدة منشورة للموقع! جاري تطبيقها...");
+                const mergedWithNew = Object.assign({}, defData);
+                // الحفاظ على إحصائيات الزائر الشخصية الحية
+                if (parsed.statistics) {
+                    mergedWithNew.statistics = parsed.statistics;
+                }
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(mergedWithNew));
+                return mergedWithNew;
+            }
+        }
+
         // حماية فائقة: التحقق من وجود الكورسات والأدوات وأنها ليست مصفوفات فارغة
         const hasValidCourses = parsed.courses && Array.isArray(parsed.courses) && parsed.courses.length > 0;
         const hasValidTools = parsed.tools && Array.isArray(parsed.tools) && parsed.tools.length > 0;
         const hasValidSettings = parsed.settings && typeof parsed.settings === 'object';
 
         if (!hasValidCourses || !hasValidTools || !hasValidSettings) {
-            const merged = Object.assign({}, DEFAULT_SITE_DATA, parsed);
-            if (!hasValidCourses) merged.courses = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.courses));
-            if (!hasValidTools) merged.tools = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.tools));
-            if (!hasValidSettings) merged.settings = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.settings));
+            const merged = Object.assign({}, defData || {}, parsed);
+            if (!hasValidCourses && defData) merged.courses = JSON.parse(JSON.stringify(defData.courses));
+            if (!hasValidTools && defData) merged.tools = JSON.parse(JSON.stringify(defData.tools));
+            if (!hasValidSettings && defData) merged.settings = JSON.parse(JSON.stringify(defData.settings));
             
             localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
             return merged;
@@ -38,20 +58,66 @@ function getSiteData() {
         return parsed;
     } catch (e) {
         console.error("Error reading site data from localStorage", e);
-        return DEFAULT_SITE_DATA;
+        return defData || {};
     }
 }
 
-// حفظ البيانات في المتصفح
+// حفظ البيانات في المتصفح ومزامنتها سحابياً مع Firebase
 function saveSiteData(data) {
     try {
+        // تسجيل وقت الحفظ لضمان تحديث متصفحات الزوار فور النشر
+        data.lastUpdated = new Date().toISOString();
         localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
         // إشعار باقي التبويبات المفتوحة في المتصفح بالتحديث
         window.dispatchEvent(new Event('siteDataUpdated'));
+
+        // الرفع السحابي الفوري إلى Firebase إذا كان الربط مفعلاً
+        if (typeof isFirebaseEnabled === 'function' && isFirebaseEnabled()) {
+            const db = initFirebase();
+            if (db) {
+                db.collection("arabsecurity").doc("master_data").set(data)
+                    .then(() => {
+                        console.log("☁️ تم إرسال وتحديث البيانات في سحابة Firebase بنجاح!");
+                    })
+                    .catch(err => {
+                        console.error("خطأ أثناء الحفظ في Firebase:", err);
+                    });
+            }
+        }
         return true;
     } catch (e) {
         console.error("Error saving site data", e);
         return false;
+    }
+}
+
+// الاستماع المباشر للتحديثات السحابية من Firebase (Real-time Cloud Sync)
+function syncWithCloudDatabase() {
+    if (typeof isFirebaseEnabled !== 'function' || !isFirebaseEnabled()) return;
+
+    try {
+        const db = initFirebase();
+        if (!db) return;
+
+        db.collection("arabsecurity").doc("master_data")
+            .onSnapshot(doc => {
+                if (doc.exists) {
+                    const cloudData = doc.data();
+                    if (cloudData && cloudData.courses && cloudData.tools) {
+                        console.log("☁️ تم استلام تحديث جديد من سحابة Firebase وتطبيقه على الصفحة!");
+                        localStorage.setItem(STORAGE_KEY, JSON.stringify(cloudData));
+                        applyThemeCustomizations();
+                        if (typeof initDynamicPagesContent === 'function') {
+                            initDynamicPagesContent();
+                        }
+                        window.dispatchEvent(new Event('siteDataUpdated'));
+                    }
+                }
+            }, err => {
+                console.warn("ملاحظة مزامنة Firebase:", err.message);
+            });
+    } catch (e) {
+        console.warn("Could not sync with Firebase:", e);
     }
 }
 
@@ -147,6 +213,7 @@ function applyThemeCustomizations() {
 // تنفيذ التهيئة التلقائية للمظهر وتسجيل الزيارة عند اكتمال تحميل الصفحة
 document.addEventListener('DOMContentLoaded', () => {
     applyThemeCustomizations();
+    syncWithCloudDatabase();
     
     // تحديد الصفحة الحالية لتسجيل الإحصائية
     const path = window.location.pathname.toLowerCase();

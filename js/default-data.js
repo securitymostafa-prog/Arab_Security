@@ -9,6 +9,10 @@
  */
 
 const DEFAULT_SITE_DATA = {
+    // إصدار وتاريخ تحديث قاعدة البيانات
+    version: "1.0.0",
+    lastUpdated: "2026-11-23T20:30:00.000Z",
+
     // إعدادات الموقع العامة
     settings: {
         siteName: "arabsecurity",
